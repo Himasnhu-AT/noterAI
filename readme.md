@@ -6,86 +6,30 @@ NoterAI helps students learn better by enabling them to take notes using a Notio
 
 - npm (version X.X.X)
 - Flutter (version X.X.X)
-- Cargo (Rust, version X.X.X)
+- cargo (version X.X.X)
 
 ### Tech Stack
 
 - **Backend**: NestJS
 - **Mobile**: Flutter
 - **Web**: Next.js
-- **AI**: Rust
+- **AI**: Rust (few functions), Python (main AI functions)
+
+### Workflow
+
+![Workflow](./assets/workflow.svg)
+
+### Sequential Diagram
+
+![Sequential Diagram](./assets/sequential.svg)
 
 ### Installation
 
-1. **Clone the repo**
-
-   ```bash
-   git clone https://github.com/himasnhu-at/noterAI.git
-   cd noterAI
-   ```
-
-2. **Install the dependencies**
-
-   ```bash
-   bash scripts/bash/install.sh # for Linux / macOS
-   # ----------------- OR -----------------
-   scripts/batch/install.bat # for Windows
-   ```
-
-3. **Setup Environment Variables**
-
-   Run the script and enter the required environment variables.
-
-   ```bash
-   bash scripts/bash/setup.sh # for Linux / macOS
-   # ----------------- OR -----------------
-   scripts/batch/setup.bat # for Windows
-   ```
-
-4. **Start Application**
-
-   In `<args>`, you can pass the following arguments:
-
-   - `--web` to start the web application
-   - `--android` to start the mobile application
-   - `--ios` to start the mobile application
-   - `--windows` to start the desktop application
-   - `--mac` to start the desktop application
-   - `--linux` to start the desktop application
-
-   ```bash
-   bash scripts/bash/start.sh <args> # for Linux / macOS
-   # ----------------- OR -----------------
-   scripts/batch/start.bat <args>  # for Windows
-   ```
-
-5. **Start Backend**
-
-   ```bash
-   cd apps/server/backend
-   npm run start:dev
-   ```
-
-6. **Start AI**
-
-   ```bash
-   cd apps/server/ai
-   cargo run
-   ```
+Visit our [Installation Guide](INSTALLATION.md) to learn how to install the project on your local machine.
 
 ### Usage
 
-#### Mobile Apps (iOS and Android)
-
-Due to financial constraints, the iOS app is not released yet. For Android, download from our site [noterAI] or visit the [Google Play Store]().
-
-#### Desktop Application (Windows, macOS, Linux)
-
-Visit our [download page]() to download the application.
-
-#### Website
-
-Access via [web portal]().
+Visit our [Usage Guide](USAGE.md) to learn how to use the project.
 
 ### Features
 
@@ -97,28 +41,7 @@ Access via [web portal]().
 
 ### Contributing
 
-We welcome contributions! To contribute, please follow these steps:
-
-1. **Fork the repository.**
-2. **Create a new branch:**
-
-   ```bash
-   git checkout -b feature/your-feature-name
-   ```
-
-3. **Make your changes and commit them:**
-
-   ```bash
-   git commit -m 'Add some feature'
-   ```
-
-4. **Push to the branch:**
-
-   ```bash
-   git push origin feature/your-feature-name
-   ```
-
-5. **Create a pull request.**
+Visit our [Contributing Guidelines](CONTRIBUTING.md) to learn how to contribute to the project.
 
 ### Coding Standards
 
@@ -130,7 +53,7 @@ This project is licensed under the `Custom License` to prevent commercial use. S
 
 ### Contact
 
-If you want to contact us, please reach out at contact@noterAI.com.
+If you want to contact us, please reach out at [hyattherate2005@gmail.com](hyattherate2005@gmail.com).
 
 ### Support
 
