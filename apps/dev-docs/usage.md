@@ -1,5 +1,7 @@
 ### Usage
 
+[[toc]]
+
 #### Mobile Apps (iOS and Android)
 
 > [!IMPORTANT]

@@ -2,6 +2,8 @@
 
 NoterAI helps students learn better by enabling them to take notes using a Notion-like UI, or their voice. The platform leverages AI to summarize notes, generate quizzes from notes, answer questions based on the notes, and keep students motivated with interesting facts related to their study topics.
 
+[[toc]]
+
 ### Prerequisites
 
 - npm (version X.X.X)

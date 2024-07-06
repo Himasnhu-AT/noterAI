@@ -19,6 +19,8 @@ module.exports = {
                 items: [
                     { text: "Development", link: "/usage" },
                     { text: "Contributing", link: "/contributing" },
+                    { text: "Folder Structure", link: "/folder-structure" },
+                    { text: "Database Schema", link: "/schema" },
                 ]
             }
         ]
