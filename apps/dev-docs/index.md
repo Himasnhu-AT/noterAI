@@ -25,11 +25,11 @@ NoterAI helps students learn better by enabling them to take notes using a Notio
 
 ### Installation
 
-Visit our [Installation Guide](./apps/dev-docs/installation.md) to learn how to install the project on your local machine.
+Visit our [Installation Guide](./installation.md) to learn how to install the project on your local machine.
 
 ### Usage
 
-Visit our [Usage Guide](./apps/dev-docs/usage.md) to learn how to use the project.
+Visit our [Usage Guide](./usage.md) to learn how to use the project.
 
 ### Features
 
@@ -41,7 +41,7 @@ Visit our [Usage Guide](./apps/dev-docs/usage.md) to learn how to use the projec
 
 ### Contributing
 
-Visit our [Contributing Guidelines](./apps/dev-docs/contributing.md) to learn how to contribute to the project.
+Visit our [Contributing Guidelines](./contributing.md) to learn how to contribute to the project.
 
 ### Coding Standards
 
@@ -49,7 +49,7 @@ We follow industry standards, emphasizing test-driven development and clean, mod
 
 ### License
 
-This project is licensed under the `Custom License` to prevent commercial use. See the [LICENSE](LICENSE) file for details, in github.
+This project is licensed under the `Custom License` to prevent commercial use. See the LICENSE file for details, in github.
 
 ### Contact
 
