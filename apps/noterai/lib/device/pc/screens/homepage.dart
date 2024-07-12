@@ -1,4 +1,7 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:noterai/device/pc/landing.dart';
+import 'package:noterai/functions/handle_shared_pref.dart';
 import 'package:noterai/services/user_service.dart';
 import 'package:noterai/models/user.dart';
 
@@ -39,6 +42,12 @@ class HomePage extends StatelessWidget {
                   Text("Name: ${user.name}"),
                   Text("Email: ${user.email}"),
                   Text("Username: ${user.username}"),
+                  ElevatedButton(
+                    onPressed: () {
+                      handleLogout(context);
+                    },
+                    child: const Text('Logout'),
+                  ),
                 ],
               ),
             );
@@ -46,5 +55,22 @@ class HomePage extends StatelessWidget {
         },
       ),
     );
+  }
+
+  Future<void> handleLogout(BuildContext context) async {
+    SharedPreferencesService prefsService =
+        await SharedPreferencesService.getInstance();
+    bool isCleared = await prefsService.clearData();
+    if (isCleared) {
+      Navigator.push(
+        // ignore: use_build_context_synchronously
+        context,
+        MaterialPageRoute(builder: (context) => const LandingPagePC()),
+      );
+    } else {
+      if (kDebugMode) {
+        print('Failed to Clear Data');
+      }
+    }
   }
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:noterai/pc/screens/auth/signup.dart';
+import 'package:noterai/device/pc/screens/auth/signup.dart';
 import 'package:noterai/functions/handle_shared_pref.dart';
-import 'package:noterai/pc/screens/homepage.dart';
+import 'package:noterai/device/pc/screens/homepage.dart';
 
 class LandingPagePC extends StatelessWidget {
   const LandingPagePC({super.key});

@@ -1,7 +1,7 @@
 import 'dart:io' show Platform;
 import 'package:flutter/material.dart';
-import 'package:noterai/mobile/landing.dart';
-import 'package:noterai/pc/landing.dart';
+import 'package:noterai/device/mobile/landing.dart';
+import 'package:noterai/device/pc/landing.dart';
 
 void main() {
   runApp(const MyApp());

@@ -1,39 +1,39 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:noterai/device/pc/screens/auth/signup.dart';
 import 'package:noterai/functions/handle_shared_pref.dart';
 import 'package:noterai/models/user.dart';
-import 'package:noterai/pc/screens/homepage.dart';
+import 'package:noterai/device/pc/screens/homepage.dart';
 
-class SignUpPage extends StatelessWidget {
-  const SignUpPage({super.key});
+class LogInPage extends StatelessWidget {
+  const LogInPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Sign Up'),
+        title: const Text('Log In'),
       ),
       body: const Padding(
         padding: EdgeInsets.all(16.0),
-        child: SignUpForm(),
+        child: LogInForm(),
       ),
     );
   }
 }
 
-class SignUpForm extends StatefulWidget {
-  const SignUpForm({super.key});
+class LogInForm extends StatefulWidget {
+  const LogInForm({super.key});
 
   @override
-  _SignUpFormState createState() => _SignUpFormState();
+  // ignore: library_private_types_in_public_api
+  _LogInFormState createState() => _LogInFormState();
 }
 
-class _SignUpFormState extends State<SignUpForm> {
+class _LogInFormState extends State<LogInForm> {
   final _formKey = GlobalKey<FormState>();
-  String _name = '';
   String _email = '';
   String _password = '';
-  String _username = '';
 
   @override
   Widget build(BuildContext context) {
@@ -42,22 +42,6 @@ class _SignUpFormState extends State<SignUpForm> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          TextFormField(
-            decoration: const InputDecoration(
-              labelText: 'Name',
-              border: OutlineInputBorder(),
-            ),
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Please enter your name';
-              }
-              return null;
-            },
-            onSaved: (value) {
-              _name = value!;
-            },
-          ),
-          const SizedBox(height: 16.0),
           TextFormField(
             decoration: const InputDecoration(
               labelText: 'Email',
@@ -91,20 +75,14 @@ class _SignUpFormState extends State<SignUpForm> {
             },
           ),
           const SizedBox(height: 16.0),
-          TextFormField(
-            decoration: const InputDecoration(
-              labelText: 'Username',
-              border: OutlineInputBorder(),
-            ),
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Please enter a username';
-              }
-              return null;
+          TextButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const SignUpPage()),
+              );
             },
-            onSaved: (value) {
-              _username = value!;
-            },
+            child: const Text('Don\'t have an account? Sign up'),
           ),
           const SizedBox(height: 16.0),
           ElevatedButton(
@@ -122,18 +100,18 @@ class _SignUpFormState extends State<SignUpForm> {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
       if (kDebugMode) {
-        print('Name: $_name');
+        print('Name: Name');
         print('Email: $_email');
         print('Password: $_password');
-        print('Username: $_username');
+        print('Username: userName');
       }
 
       User user = User(
         id: "12",
-        name: _name,
+        name: "Name",
         email: _email,
         password: _password,
-        username: _username,
+        username: "userName",
         token: "fjdals;f",
       );
 
