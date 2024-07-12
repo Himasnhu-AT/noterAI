@@ -8,12 +8,41 @@ datasource db {
 }
 
 model User {
-  id       String @id @default(cuid())
-  name     String
-  username String @unique
-  email    String @unique
-  password String
+  id         String  @id @default(cuid())
+  name       String
+  userName   String  @unique
+  email      String  @unique
+  password   String
+  token      String
+  isVerified Boolean @default(false)
+
   books    Book[]
+  settings UserSettings @relation(fields: [userSettingsId], references: [id])
+
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  userSettingsId String
+}
+
+model UserSettings {
+  id String @id @default(cuid())
+
+  User                 User[]
+  emailsSubscriptionId String
+
+  emailSubscription EmailsSubscription @relation(fields: [emailsSubscriptionId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model EmailsSubscription {
+  id           String         @id @default(uuid())
+  UserSettings UserSettings[]
+
+  announcements    Boolean @default(true)
+  SecurityFeatures Boolean @default(true)
+  ProductUpgrades  Boolean @default(true)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
