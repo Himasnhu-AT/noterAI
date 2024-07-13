@@ -16,7 +16,9 @@ import Redis from 'ioredis';
 import { emit } from 'process';
 import RetrieveInfoFromRequest from 'src/handlers/retriveInfoFromRequest.global';
 import * as bcrypt from 'bcrypt';
-import crypto from 'crypto';
+// import crypto from 'crypto';
+import { randomBytes } from 'crypto';
+
 
 @Injectable()
 export class AuthService {
@@ -67,7 +69,7 @@ export class AuthService {
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
-    const token = crypto.randomBytes(32).toString('hex');
+    const token = randomBytes(32).toString('hex');
 
     let user = await this.prisma.user
       .create({
