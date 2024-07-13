@@ -16,7 +16,6 @@ import Redis from 'ioredis';
 import { emit } from 'process';
 import RetrieveInfoFromRequest from 'src/handlers/retriveInfoFromRequest.global';
 import * as bcrypt from 'bcrypt';
-// import crypto from 'crypto';
 import { randomBytes } from 'crypto';
 
 
