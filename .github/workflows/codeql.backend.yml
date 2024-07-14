@@ -35,6 +35,8 @@ jobs:
         cd apps/server/backend
         pnpm install
         pnpm build
+        npm install
+        npm run build
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v2
