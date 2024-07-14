@@ -9,11 +9,13 @@ import { AuthController } from './api/auth/auth.controller';
 import { AuthService } from './api/auth/auth.service';
 import Redis from 'ioredis';
 import { JwtStrategy } from './api/auth/jwt.strategy';
+import { UserModule } from './api/user/user.module';
 
 @Module({
   imports: [
     PrismaModule,
     AuthModule,
+    UserModule,
     PassportModule.register({ defaultStrategy: 'jwt' }),
     JwtModule.register({
       global: true,
