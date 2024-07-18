@@ -33,8 +33,6 @@ jobs:
     - name: Build backend
       run: |
         cd apps/server/backend
-        pnpm install
-        pnpm build
         npm install
         npm run build
 

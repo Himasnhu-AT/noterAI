@@ -9,7 +9,7 @@ import { AuthController } from './api/auth/auth.controller';
 import { AuthService } from './api/auth/auth.service';
 import Redis from 'ioredis';
 import { JwtStrategy } from './api/auth/jwt.strategy';
-import { UserModule } from './api/user/user.module';
+import { BookModule } from './api/user/book.module';
 
 @Module({
   imports: [
@@ -22,6 +22,7 @@ import { UserModule } from './api/user/user.module';
       secret: process.env.JWT_SECRET,
       signOptions: { expiresIn: process.env.EXPIRES_IN || 604800 },
     }),
+    BookModule,
   ],
   controllers: [AppController],
   providers: [

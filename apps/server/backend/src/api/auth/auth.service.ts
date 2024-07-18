@@ -19,6 +19,7 @@ import * as bcrypt from 'bcrypt';
 import { randomBytes } from 'crypto';
 
 
+
 @Injectable()
 export class AuthService {
   constructor(
@@ -284,7 +285,7 @@ export class AuthService {
       throw new HttpException('User not found', HttpStatus.NOT_FOUND);
     }
 
-    if (bcrypt.compare(password, (user as { password: string }).password)) {
+    if (!bcrypt.compare(password, (user as { password: string }).password)) {
       throw new HttpException('Invalid password', HttpStatus.UNAUTHORIZED);
     }
 
