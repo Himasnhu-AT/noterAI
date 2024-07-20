@@ -61,4 +61,32 @@ export class UserService {
       },
     });
   }
+
+    async addNewNote(request: any, sectionId: string, note: NoteDto) {
+    const userId = RetrieveInfoFromRequest(request).id;
+
+    if (!userId) {
+      throw new Error('Unable to retrieve user information, please try again');
+    }
+
+    if (!(await this.prisma.user.findUnique({ where: { id: userId } }))) {
+      throw new Error('User not found');
+    }
+
+    if (!(await this.prisma.section.findUnique({ where: { id: sectionId } }))) {
+      throw new Error('Section not found');
+    }
+
+    return await this.prisma.note.create({
+      data: {
+        // TODO save content
+        // content: note.content,
+        section: {
+          connect: {
+            id: sectionId,
+          },
+        },
+      },
+    });
+ }
 }
