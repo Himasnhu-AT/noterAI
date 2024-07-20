@@ -3,6 +3,7 @@ import { BookDto } from './dto/book.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
 import RetrieveInfoFromRequest from 'src/handlers/retriveInfoFromRequest.global';
 import { SectionDto } from './dto/section.dto';
+import { NoteDto } from './dto/note.dto';
 
 @Injectable()
 export class UserService {
