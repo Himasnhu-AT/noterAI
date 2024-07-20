@@ -12,6 +12,7 @@ import { Public } from 'src/custom.decorator/custom.decorator';
 import { AuthGuard } from '@nestjs/passport';
 import { BookDto } from './dto/book.dto';
 import { SectionDto } from './dto/section.dto';
+import { NoteDto } from './dto/note.dto';
 
 @Controller('user')
 export class UserController {
