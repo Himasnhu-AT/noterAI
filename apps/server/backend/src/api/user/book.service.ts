@@ -61,4 +61,22 @@ export class UserService {
       },
     });
   }
+
+  async getBooks(request: any) {
+    const userId = RetrieveInfoFromRequest(request).id;
+
+    if (!userId) {
+      throw new Error('Unable to retrieve user information, please try again');
+    }
+
+    if (!(await this.prisma.user.findUnique({ where: { id: userId } }))) {
+      throw new Error('User not found');
+    }
+
+    return await this.prisma.book.findMany({
+      where: {
+        userId,
+      },
+    });
+  }
 }

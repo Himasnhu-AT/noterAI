@@ -38,4 +38,12 @@ export class UserController {
   ) {
     return this.userService.addNewSection(request, bookId, dto);
   }
+
+  @Get('books')
+  @UseGuards(AuthGuard('jwt'))
+  getBooks(
+    @Req() request,
+  ) {
+    return this.userService.getBooks(request);
+  }
 }
