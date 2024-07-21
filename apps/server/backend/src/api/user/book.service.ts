@@ -79,4 +79,29 @@ export class UserService {
       },
     });
   }
+
+  async updateBook(request: any, bookId: string, dto: BookDto) {
+    const userId = RetrieveInfoFromRequest(request).id;
+
+    if (!userId) {
+      throw new Error('Unable to retrieve user information, please try again');
+    }
+
+    if (!(await this.prisma.user.findUnique({ where: { id: userId } }))) {
+      throw new Error('User not found');
+    }
+
+    if (!(await this.prisma.book.findUnique({ where: { id: bookId } }))) {
+      throw new Error('Book not found');
+    }
+
+    return await this.prisma.book.update({
+      where: {
+        id: bookId,
+      },
+      data: {
+        title: dto.title,
+      },
+    });
+  }
 }
