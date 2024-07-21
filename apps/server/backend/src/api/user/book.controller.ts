@@ -46,4 +46,13 @@ export class UserController {
   ) {
     return this.userService.getBooks(request);
   }
+
+  @Get(':bookId/sections')
+  @UseGuards(AuthGuard('jwt'))
+  getSections(
+    @Param('bookId') bookId: string,
+    @Req() request,
+  ) {
+    return this.userService.getSections(request, bookId);
+  }
 }
