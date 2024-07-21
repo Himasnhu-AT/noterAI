@@ -46,4 +46,14 @@ export class UserController {
   ) {
     return this.userService.getBooks(request);
   }
+
+  @Post('new/:sectionId/note')
+  @UseGuards(AuthGuard('jwt'))
+  addNewNote(
+    @Body() dto: NoteDto,
+    @Param('sectionId') sectionId: string,
+    @Req() request,
+  ) {
+    return this.userService.addNewNote(request, sectionId, dto);
+  }
 }
