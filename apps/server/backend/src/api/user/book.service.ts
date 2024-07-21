@@ -79,4 +79,33 @@ export class UserService {
       },
     });
   }
+
+  async updateSection(request: any, bookId: string, sectionId: string, dto: SectionDto) {
+    const userId = RetrieveInfoFromRequest(request).id;
+
+    if (!userId) {
+      throw new Error('Unable to retrieve user information, please try again');
+    }
+
+    if (!(await this.prisma.user.findUnique({ where: { id: userId } }))) {
+      throw new Error('User not found');
+    }
+
+    if (!(await this.prisma.book.findUnique({ where: { id: bookId } }))) {
+      throw new Error('Book not found');
+    }
+
+    if (!(await this.prisma.section.findUnique({ where: { bookId, id: sectionId } }))) {
+      throw new Error('Section not found');
+    }
+
+    return await this.prisma.section.update({
+      where: {
+        id: sectionId,
+      },
+      data: {
+        title: dto.title,
+      },
+    });
+  }
 }

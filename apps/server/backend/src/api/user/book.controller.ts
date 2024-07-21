@@ -4,6 +4,7 @@ import {
   Get,
   Param,
   Post,
+  Patch,
   Req,
   UseGuards,
 } from '@nestjs/common';
@@ -45,5 +46,16 @@ export class UserController {
     @Req() request,
   ) {
     return this.userService.getBooks(request);
+  }
+
+  @Patch(':bookId/:sectionId/update')
+  @UseGuards(AuthGuard('jwt'))
+  updateSection(
+    @Param('bookId') bookId: string,
+    @Param('sectionId') sectionId: string,
+    @Body() dto: SectionDto,
+    @Req() request,
+  ) {
+    return this.userService.updateSection(request, bookId, sectionId, dto);
   }
 }
