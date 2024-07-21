@@ -3,6 +3,7 @@ import { BookDto } from './dto/book.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
 import RetrieveInfoFromRequest from 'src/handlers/retriveInfoFromRequest.global';
 import { SectionDto } from './dto/section.dto';
+import { NoteDto } from './dto/note.dto';
 
 @Injectable()
 export class UserService {
@@ -80,7 +81,7 @@ export class UserService {
     });
   }
 
-  async addNewNote(request: any, sectionId: string, note: NoteDto) {
+  async addNewNote(request: any, bookId: string, sectionId: string, note: NoteDto) {
     const userId = RetrieveInfoFromRequest(request).id;
 
     if (!userId) {
@@ -91,7 +92,7 @@ export class UserService {
       throw new Error('User not found');
     }
 
-    if (!(await this.prisma.section.findUnique({ where: { id: sectionId } }))) {
+    if (!(await this.prisma.section.findUnique({ where: { bookId, id: sectionId } }))) {
       throw new Error('Section not found');
     }
 

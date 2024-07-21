@@ -12,6 +12,7 @@ import { Public } from 'src/custom.decorator/custom.decorator';
 import { AuthGuard } from '@nestjs/passport';
 import { BookDto } from './dto/book.dto';
 import { SectionDto } from './dto/section.dto';
+import { NoteDto } from './dto/note.dto';
 
 @Controller('user')
 export class UserController {
@@ -47,13 +48,14 @@ export class UserController {
     return this.userService.getBooks(request);
   }
 
-  @Post('new/:sectionId/note')
+  @Post('new/:bookId/:sectionId/note')
   @UseGuards(AuthGuard('jwt'))
   addNewNote(
     @Body() dto: NoteDto,
     @Param('sectionId') sectionId: string,
+    @Param('bookId') bookId: string,
     @Req() request,
   ) {
-    return this.userService.addNewNote(request, sectionId, dto);
+    return this.userService.addNewNote(request, bookId, sectionId, dto);
   }
 }
