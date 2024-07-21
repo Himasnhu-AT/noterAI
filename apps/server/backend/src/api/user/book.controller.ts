@@ -46,4 +46,15 @@ export class UserController {
   ) {
     return this.userService.getBooks(request);
   }
+
+  @Get(':bookId/:sectionId/:noteId')
+  @UseGuards(AuthGuard('jwt'))
+  getNote(
+    @Param('bookId') bookId: string,
+    @Param('sectionId') sectionId: string,
+    @Param('noteId') noteId: string,
+    @Req() request,
+  ) {
+    return this.userService.getNote(request, bookId, sectionId, noteId);
+  }
 }
