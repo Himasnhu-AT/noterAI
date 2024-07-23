@@ -22,7 +22,10 @@
     "db:up": "docker-compose -f ./docker-compose.yml up -d",
     "db:down": "docker-compose -f ./docker-compose.yml down",
     "db:dev": "npx prisma migrate dev deploy",
-    "db:studio": "npx prisma studio"
+    "db:studio": "npx prisma studio",
+    "db:seed": "node prisma/seed.js",
+    "db:reset": "node prisma/reset.js",
+    "db:re": "npm run db:reset && npm run db:dev && npm run db:seed"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
@@ -34,6 +37,7 @@
     "@nestjs/swagger": "^7.4.0",
     "bcrypt": "^5.1.1",
     "class-validator": "^0.14.1",
+    "cookie-parser": "^1.4.6",
     "ioredis": "^5.4.1",
     "jsonwebtoken": "^9.0.2",
     "nodemailer": "^6.9.14",
