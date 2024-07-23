@@ -1,16 +1,17 @@
-# noterai
+# NoterAI
 
-A new Flutter project.
+This package contains the flutter code for the project.
 
-## Getting Started
+## Installation:
 
-This project is a starting point for a Flutter application.
+1. Clone the repository.
+2. Navigate to the `apps/flutter` directory.
+3. Run `flutter pub get` to install the dependencies.
+4. Run `flutter run` to start the application.
 
-A few resources to get you started if this is your first Flutter project:
+## Building:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+1. Run `flutter build apk` to build the apk file.
+2. Run `flutter build deb` for Debian-based Linux distributions.
+3. Run `flutter build rpm` for Red Hat-based Linux distributions.
+4. Run `flutter build windows` for Windows.

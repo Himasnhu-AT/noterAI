@@ -10,18 +10,20 @@ NoterAI helps students learn better by enabling them to take notes using a Notio
 
 ### Tech Stack
 
-- **Backend**: NestJS
-- **Mobile**: Flutter
+- **Backend**: NestJS, prisma, reddis
+- **android, windows, linux**: Flutter
+- **iOS, macOS**: swift
 - **Web**: Next.js
 - **AI**: Rust (few functions), Python (main AI functions)
 
-### Workflow
+### Packages
 
-![Workflow](./assets/workflow.svg)
-
-### Sequential Diagram
-
-![Sequential Diagram](./assets/sequential.svg)
+- [**dev-docs**](./apps/dev-docs/index.md): Contains all the documentation related to the project.
+- [**flutter**](./apps/flutter/readme.md): Contains the flutter code for the project.
+- [**server/backend**](./apps/server/backend/readme.md): Contains the backend code for the project.
+- [**server/ai**](./apps/server/ai/readme.md): Contains the AI code for the project.
+- [**swift**](./apps/swift/readme.md): Contains the swift code for the project.
+- [**web**](./apps/web/readme.md): Contains the web code for the project.
 
 ### Installation
 
