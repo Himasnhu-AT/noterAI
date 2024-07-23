@@ -3,6 +3,7 @@ import { BookDto } from './dto/book.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
 import RetrieveInfoFromRequest from 'src/handlers/retriveInfoFromRequest.global';
 import { SectionDto } from './dto/section.dto';
+import { NoteDto } from './dto/note.dto';
 
 @Injectable()
 export class UserService {
@@ -62,7 +63,35 @@ export class UserService {
     });
   }
 
-  async getBooks(request: any) {
+  async addNewNote(request: any, bookId: string, sectionId: string, note: NoteDto) {
+    const userId = RetrieveInfoFromRequest(request).id;
+
+    if (!userId) {
+      throw new Error('Unable to retrieve user information, please try again');
+    }
+
+    if (!(await this.prisma.user.findUnique({ where: { id: userId } }))) {
+      throw new Error('User not found');
+    }
+
+    if (!(await this.prisma.section.findUnique({ where: { bookId, id: sectionId } }))) {
+      throw new Error('Section not found');
+    }
+
+    return await this.prisma.note.create({
+      data: {
+        // TODO save content
+        // content: note.content,
+        section: {
+          connect: {
+            id: sectionId,
+          },
+        },
+      },
+    });
+}
+
+ async getBooks(request: any) {
     const userId = RetrieveInfoFromRequest(request).id;
 
     if (!userId) {
@@ -76,6 +105,28 @@ export class UserService {
     return await this.prisma.book.findMany({
       where: {
         userId,
+      },
+    });
+  }
+
+  async getSections(request: any, bookId: string) {
+    const userId = RetrieveInfoFromRequest(request).id;
+
+    if (!userId) {
+      throw new Error('Unable to retrieve user information, please try again');
+    }
+
+    if (!(await this.prisma.user.findUnique({ where: { id: userId } }))) {
+      throw new Error('User not found');
+    }
+
+    if (!(await this.prisma.book.findUnique({ where: { id: bookId } }))) {
+      throw new Error('Book not found');
+    }
+
+    return await this.prisma.section.findMany({
+      where: {
+        bookId,
       },
     });
   }
@@ -105,4 +156,129 @@ export class UserService {
       },
     });
   }
+
+  async getNote(request: any, bookId: string, sectionId: string, noteId: string) {
+  {
+    const userId = RetrieveInfoFromRequest(request).id;
+
+    if (!userId) {
+      throw new Error('Unable to retrieve user information, please try again');
+    }
+
+    if (!(await this.prisma.user.findUnique({ where: { id: userId } }))) {
+      throw new Error('User not found');
+    }
+
+    if (!(await this.prisma.book.findUnique({ where: { id: bookId } }))) {
+      throw new Error('Book not found');
+    }
+
+    if (!(await this.prisma.section.findUnique({where: { bookId, id: sectionId} }))) {
+      throw new Error('Section not found');
+    }
+
+    if (!(await this.prisma.note.findUnique({ where: { sectionId, id: noteId} }))) {
+      throw new Error('Note not found');
+    }
+
+    return await this.prisma.note.findUnique({
+      where: {
+        sectionId,
+        id: noteId,
+      },
+    });
+  }
 }
+
+  async updateNote(request: any, bookId: string, sectionId: string, noteId: string)
+  {
+    const userId = RetrieveInfoFromRequest(request).id;
+
+    if (!userId) {
+      throw new Error('Unable to retrieve user information, please try again');
+    }
+
+    if (!(await this.prisma.user.findUnique({ where: { id: userId } }))) {
+      throw new Error('User not found');
+    }
+
+    if (!(await this.prisma.book.findUnique({ where: { id: bookId } }))) {
+      throw new Error('Book not found');
+    }
+
+    if (!(await this.prisma.section.findUnique({ where: { bookId, id: sectionId } }))) {
+      throw new Error('Section not found');
+    }
+
+    if (!(await this.prisma.note.findUnique({ where: { sectionId, id: noteId } }))) {
+      throw new Error('Note not found');
+    }
+
+    return await this.prisma.note.update({
+      where: {
+        sectionId,
+        id: noteId,
+      },
+      data: {
+        // TODO save content
+        // content: note.content,
+      },
+    });
+  }
+
+  async updateBook(request: any, bookId: string, dto: BookDto) {
+    const userId = RetrieveInfoFromRequest(request).id;
+
+    if (!userId) {
+      throw new Error('Unable to retrieve user information, please try again');
+    }
+
+    if (!(await this.prisma.user.findUnique({ where: { id: userId } }))) {
+      throw new Error('User not found');
+    }
+
+    if (!(await this.prisma.book.findUnique({ where: { id: bookId } }))) {
+      throw new Error('Book not found');
+    }
+
+    return await this.prisma.book.update({
+      where: {
+        id: bookId,
+      },
+      data: {
+        title: dto.title,
+      },
+    });
+  }
+
+  async updateSection(request: any, bookId: string, sectionId: string, dto: SectionDto) {
+    const userId = RetrieveInfoFromRequest(request).id;
+
+    if (!userId) {
+      throw new Error('Unable to retrieve user information, please try again');
+    }
+
+    if (!(await this.prisma.user.findUnique({ where: { id: userId } }))) {
+      throw new Error('User not found');
+    }
+
+    if (!(await this.prisma.book.findUnique({ where: { id: bookId } }))) {
+      throw new Error('Book not found');
+    }
+
+    if (!(await this.prisma.section.findUnique({ where: { bookId, id: sectionId } }))) {
+      throw new Error('Section not found');
+    }
+
+    return await this.prisma.section.update({
+      where: {
+        id: sectionId,
+      },
+      data: {
+        title: dto.title,
+      },
+    });
+  }
+
+}
+
