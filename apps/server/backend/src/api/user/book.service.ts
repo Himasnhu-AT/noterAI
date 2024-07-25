@@ -280,5 +280,83 @@ export class UserService {
     });
   }
 
+  async deleteNote(request: any, bookId: string, sectionId: string, noteId: string) {
+    const userId = RetrieveInfoFromRequest(request).id;
+  
+    if (!userId) {
+      throw new Error('Unable to retrieve user information, please try again');
+    }
+  
+    if (!(await this.prisma.user.findUnique({ where: { id: userId } }))) {
+      throw new Error('User not found');
+    }
+  
+    if (!(await this.prisma.book.findUnique({ where: { id: bookId } }))) {
+      throw new Error('Book not found');
+    }
+  
+    if (!(await this.prisma.section.findUnique({ where: { bookId, id: sectionId } }))) {
+      throw new Error('Section not found');
+    }
+  
+    if (!(await this.prisma.note.findUnique({ where: { sectionId, id: noteId } }))) {
+      throw new Error('Note not found');
+    }
+  
+    return await this.prisma.note.delete({
+      where: {
+        id: noteId
+      },
+    });
+  }
+
+  async deleteSection(request: any, bookId: string, sectionId: string) {
+    const userId = RetrieveInfoFromRequest(request).id;
+  
+    if (!userId) {
+      throw new Error('Unable to retrieve user information, please try again');
+    }
+  
+    if (!(await this.prisma.user.findUnique({ where: { id: userId } }))) {
+      throw new Error('User not found');
+    }
+  
+    if (!(await this.prisma.book.findUnique({ where: { id: bookId } }))) {
+      throw new Error('Book not found');
+    }
+  
+    if (!(await this.prisma.section.findUnique({ where: { bookId, id: sectionId } }))) {
+      throw new Error('Section not found');
+    }
+  
+    return await this.prisma.section.delete({
+      where: {
+        id: sectionId
+      },
+    });
+  }
+
+  async deleteBook(request: any, bookId: string) {
+    const userId = RetrieveInfoFromRequest(request).id;
+  
+    if (!userId) {
+      throw new Error('Unable to retrieve user information, please try again');
+    }
+  
+    if (!(await this.prisma.user.findUnique({ where: { id: userId } }))) {
+      throw new Error('User not found');
+    }
+  
+    if (!(await this.prisma.book.findUnique({ where: { id: bookId } }))) {
+      throw new Error('Book not found');
+    }
+  
+    return await this.prisma.book.delete({
+      where: {
+        id: bookId
+      },
+    });
+  }
+
 }
 

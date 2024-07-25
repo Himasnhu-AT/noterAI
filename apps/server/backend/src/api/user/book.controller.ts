@@ -123,6 +123,36 @@ export class UserController {
     return this.userService.updateSection(request, bookId, sectionId, dto);
   }
 
+  @Patch(':bookId/:sectionId/:noteId/delete')
+  @UseGuards(AuthGuard('jwt'))
+  deleteNote(
+    @Param('bookId') bookId: string,
+    @Param('sectionId') sectionId: string,
+    @Param('noteId') noteId: string,
+    @Req() request,
+  ) {
+    return this.userService.deleteNote(request, bookId, sectionId, noteId);
+  }
+
+  @Patch(':bookId/:sectionId/delete')
+  @UseGuards(AuthGuard('jwt'))
+  deleteSection(
+    @Param('bookId') bookId: string,
+    @Param('sectionId') sectionId: string,
+    @Req() request,
+  ) {
+    return this.userService.deleteSection(request, bookId, sectionId);
+  }
+
+  @Patch(':bookId/delete')
+  @UseGuards(AuthGuard('jwt'))
+  deleteBook(
+    @Param('bookId') bookId: string,
+    @Req() request,
+  ) {
+    return this.userService.deleteBook(request, bookId);
+  }
+
 
   
 }
