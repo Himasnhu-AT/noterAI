@@ -5,6 +5,7 @@ import {
   Param,
   Patch,
   Post,
+  Delete,
   Req,
   UseGuards,
 } from '@nestjs/common';
@@ -123,7 +124,7 @@ export class UserController {
     return this.userService.updateSection(request, bookId, sectionId, dto);
   }
 
-  @Patch(':bookId/:sectionId/:noteId/delete')
+  @Delete(':bookId/:sectionId/:noteId/delete')
   @UseGuards(AuthGuard('jwt'))
   deleteNote(
     @Param('bookId') bookId: string,
@@ -134,7 +135,7 @@ export class UserController {
     return this.userService.deleteNote(request, bookId, sectionId, noteId);
   }
 
-  @Patch(':bookId/:sectionId/delete')
+  @Delete(':bookId/:sectionId/delete')
   @UseGuards(AuthGuard('jwt'))
   deleteSection(
     @Param('bookId') bookId: string,
@@ -144,15 +145,12 @@ export class UserController {
     return this.userService.deleteSection(request, bookId, sectionId);
   }
 
-  @Patch(':bookId/delete')
+  @Delete(':bookId/delete')
   @UseGuards(AuthGuard('jwt'))
   deleteBook(
     @Param('bookId') bookId: string,
     @Req() request,
   ) {
     return this.userService.deleteBook(request, bookId);
-  }
-
-
-  
+  }  
 }
