@@ -13,11 +13,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Install OpenSSL
-        run: |
-          apt-get update
-          apt-get install -y libssl-dev
-
       - name: Checkout repository
         uses: actions/checkout@v2
 
@@ -28,6 +23,15 @@ jobs:
 
       - name: Install pnpm
         run: npm install -g pnpm
+
+      - name: Update package list
+        run: |
+          sudo apt-get update -y
+
+      - name: Install OpenSSL
+        run: |
+          sudo apt-get install -y libssl-dev
+
 
       - name: Install dependencies
         run: pnpm install
