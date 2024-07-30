@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
@@ -8,11 +8,50 @@ import {
   IconBrandGoogle,
   IconBrandTwitter,
 } from "@tabler/icons-react";
+import { useRouter } from "next/navigation";
 
 export function SignupForm() {
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    userName: ""
+  });
+  const router = useRouter();
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form submitted");
+    try {
+      const { firstName, lastName, ...rest } = formData;
+      const name = `${firstName} ${lastName}`;
+      const dataToSend = { ...rest, name };
+
+      console.log(dataToSend);
+
+      const response = await fetch("http://localhost:3000/auth/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(dataToSend)
+      });
+      
+      const result = await response.json();
+      console.log("Form submitted", result);
+      router.push('/login');
+    } catch (error) {
+      console.error("Error submitting form", error);
+    }
   };
   return (
     <div className="max-w-md w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-white dark:bg-black">
@@ -27,29 +66,61 @@ export function SignupForm() {
         <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-4">
           <LabelInputContainer>
             <Label htmlFor="firstname">First name</Label>
-            <Input id="firstname" placeholder="Bhuvan" type="text" />
+            <Input
+              id="firstname"
+              name="firstName"
+              placeholder="Bhuvan"
+              type="text"
+              value={formData.firstName}
+              onChange={handleChange}
+            />
           </LabelInputContainer>
           <LabelInputContainer>
             <Label htmlFor="lastname">Last name</Label>
-            <Input id="lastname" placeholder="Sharma" type="text" />
+            <Input
+              id="lastname"
+              name="lastName"
+              placeholder="Sharma"
+              type="text"
+              value={formData.lastName}
+              onChange={handleChange}
+            />
           </LabelInputContainer>
         </div>
         <LabelInputContainer className="mb-4">
           <Label htmlFor="email">Email Address</Label>
-          <Input id="email" placeholder="abc@xyz.com" type="email" />
+          <Input
+            id="email"
+            name="email"
+            placeholder="abc@xyz.com"
+            type="email"
+            value={formData.email}
+            onChange={handleChange}
+          />
+        </LabelInputContainer>
+        <LabelInputContainer className="mb-8">
+          <Label htmlFor="username">Username</Label>
+          <Input
+            id="username"
+            name="userName"
+            placeholder="Username"
+            type="text"
+            value={formData.userName}
+            onChange={handleChange}
+          />
         </LabelInputContainer>
         <LabelInputContainer className="mb-4">
           <Label htmlFor="password">Password</Label>
-          <Input id="password" placeholder="••••••••" type="password" />
-        </LabelInputContainer>
-        <LabelInputContainer className="mb-8">
-          <Label htmlFor="password">Confirm Password</Label>
           <Input
-            id="confirmPassword"
+            id="password"
+            name="password"
             placeholder="••••••••"
             type="password"
+            value={formData.password}
+            onChange={handleChange}
           />
         </LabelInputContainer>
+        
 
         <button
           className="bg-gradient-to-br relative group/btn from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"

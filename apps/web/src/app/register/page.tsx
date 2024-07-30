@@ -1,7 +1,7 @@
-import { SignupForm } from '@/components/signup'
+import { SignupForm } from '@/components/Signup'
 import React from 'react'
 
-function page() {
+function registerpage() {
   return (
     <div className='mt-7'>
       <SignupForm/>
@@ -9,4 +9,4 @@ function page() {
   )
 }
 
-export default page
+export default registerpage
