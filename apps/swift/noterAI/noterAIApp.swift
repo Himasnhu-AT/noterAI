@@ -12,6 +12,14 @@ struct noterAIApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+            //LoginPage()
+        }
+        // .windowStyle(HiddenTitleBarWindowStyle())
+        
+        MenuBarExtra {
+            MenuBar()
+        } label: {
+            Image("logo")
         }
     }
 }
