@@ -14,6 +14,7 @@ function Navigationbar() {
         "About Us",
         "Contact Us"
     ];
+
   return (
         <div className=''>
             <Navbar onMenuOpenChange={setIsMenuOpen} isBordered>
@@ -28,13 +29,13 @@ function Navigationbar() {
                 </NavbarContent>
 
                 <NavbarContent className="hidden sm:flex gap-4" justify="center">
-                    <NavbarItem>
+                    <NavbarItem >
                     <Link color="foreground" href="/">
                         Homepage
                     </Link>
                     </NavbarItem>
 
-                    <NavbarItem isActive>
+                    <NavbarItem>
                     <Link href="/about" aria-current="page">
                         About Us
                     </Link>

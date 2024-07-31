@@ -20,8 +20,9 @@ export function SignupForm() {
     userName: ""
   });
   const router = useRouter();
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
-  const handleChange = (e) => {
+  const handleChange = (e: { target: { name: any; value: any; }; }) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
@@ -29,7 +30,7 @@ export function SignupForm() {
     }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     try {
       const { firstName, lastName, ...rest } = formData;
@@ -38,7 +39,7 @@ export function SignupForm() {
 
       console.log(dataToSend);
 
-      const response = await fetch("http://localhost:3000/auth/signup", {
+      const response = await fetch(`${apiBaseUrl}/auth/signup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -46,9 +47,18 @@ export function SignupForm() {
         body: JSON.stringify(dataToSend)
       });
       
-      const result = await response.json();
-      console.log("Form submitted", result);
-      router.push('/login');
+      const data = await response.json();
+      console.log("Form submitted",data);
+
+      if(response.ok)
+      {
+        router.push(`/verify?email=${formData.email}`);
+      }
+      else
+      {
+        console.error("Error fetching api")
+      }
+      
     } catch (error) {
       console.error("Error submitting form", error);
     }
@@ -69,7 +79,7 @@ export function SignupForm() {
             <Input
               id="firstname"
               name="firstName"
-              placeholder="Bhuvan"
+              placeholder="noter"
               type="text"
               value={formData.firstName}
               onChange={handleChange}
@@ -80,7 +90,7 @@ export function SignupForm() {
             <Input
               id="lastname"
               name="lastName"
-              placeholder="Sharma"
+              placeholder="Ai"
               type="text"
               value={formData.lastName}
               onChange={handleChange}
@@ -92,7 +102,7 @@ export function SignupForm() {
           <Input
             id="email"
             name="email"
-            placeholder="abc@xyz.com"
+            placeholder="noterAi@xyz.com"
             type="email"
             value={formData.email}
             onChange={handleChange}
