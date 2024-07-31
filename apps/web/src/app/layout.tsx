@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Navigationbar from "@/components/Navigationbar";
 import {Providers} from "./providers";
+import { Suspense } from "react";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -22,7 +23,9 @@ export default function RootLayout({
       <body className={inter.className}>
         <Providers>
           <div><Navigationbar /></div>
+          <Suspense fallback={<div>Loading...</div>}>
           {children}
+          </Suspense>
         </Providers>
       </body>
     </html>
