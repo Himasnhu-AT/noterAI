@@ -4,9 +4,6 @@ import React from 'react'
 import {  Navbar,   NavbarBrand,   NavbarContent,   NavbarItem,   NavbarMenuToggle,  NavbarMenu,  NavbarMenuItem} from "@nextui-org/navbar";
 import {Button} from "@nextui-org/button";
 import Link  from 'next/link';
-import {MoonIcon} from "./ui/MoonIcon";
-import {SunIcon} from "./ui/SunIcon";
-import { Switch } from '@nextui-org/switch';
 
 
 function Navigationbar() {
