@@ -8,14 +8,16 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @StateObject var vm = viewModel()
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        if vm.authenticated {
+            HomePage()
+        } else {
+            // ZStack {
+            AuthView()
         }
-        .padding()
     }
 }
 
