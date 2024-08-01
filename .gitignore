@@ -2,3 +2,6 @@
 .env
 .vscode
 .DS_STORE
+pnpm-lock.yaml
+yarn.lock
+package-lock.json
