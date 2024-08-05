@@ -52,7 +52,7 @@ export function SignupForm() {
 
       if(response.ok)
       {
-        router.push(`/verify?email=${formData.email}`);
+        router.push(`/auth/verify?email=${formData.email}`);
       }
       else
       {

@@ -36,7 +36,7 @@ function Verify() {
 
       if (response.ok) {
         console.log("Verification successful", data);
-        router.push("/login")
+        router.push("/dashboard")
 
       } else {
         console.error("Verification failed", data);

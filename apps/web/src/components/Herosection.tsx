@@ -1,6 +1,8 @@
 "use client";
+import Link from "next/link";
 import { HeroHighlight, Highlight } from "./ui/hero-highlight";
 import { TextGenerateEffect } from "./ui/text-generate-effect";
+import {Button} from "@nextui-org/button";
 
 export function Herosection() {
     const words="All your notes, synced on all your devices. Get Simplenote now for iOS, Android, Desktop or in your browser."
@@ -17,12 +19,12 @@ export function Herosection() {
       </h1>
       <TextGenerateEffect words={words} className="text-1xl"/> 
       <div className="flex justify-center mt-10">
-        <button className="p-[3px] relative">
+        <Button className="p-[1px] relative" as={Link} href="/auth/register">
           <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg" />
           <div className="px-8 py-2  bg-black rounded-[6px]  relative group transition duration-200 text-white hover:bg-transparent">
             Start for free
           </div>
-        </button>
+        </Button>
       </div>
     </HeroHighlight>
   );

@@ -1,18 +1,14 @@
-"use client"
-
-import React, { useState } from 'react'
-import { motion } from "framer-motion";
-import { AuroraBackground } from "@/components/ui/aurora-background";
-import Image from "next/image";
+"use client";
+import React, { useState } from "react";
+import { Label } from "@/components/ui/label";
+import { cn } from "@/lib/utils";
+import { useRouter } from "next/navigation";
 import {Input} from "@nextui-org/input";
 import {MailIcon} from '@/components/ui/MailIcon';
 import { EyeSlashFilledIcon } from '@/components/ui/EyeSlashFilledIcon';
 import { EyeFilledIcon } from '@/components/ui/EyeFilledIcon';
-import {Button} from "@nextui-org/react";
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 
-function Loginpage() {
+export function LoginForm() {
 
   const router=useRouter()
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
@@ -45,41 +41,28 @@ function Loginpage() {
       const data = await response.json();
 
       if (response.ok) {
-        console.log("Verification successful", data);
-        router.push("/dashboard")
-
+        router.push(`/auth/verify?email=${email}`);
       } else {
         console.error("Verification failed", data);
       }
     } catch (error) {
       console.error("Error verifying email", error);
     }
-  }
-
+  };
   return (
-    <div >
-      <AuroraBackground>
-      <motion.div
-        initial={{ opacity: 0.0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{
-          delay: 0.3,
-          duration: 0.8,
-          ease: "easeInOut",
-        }}
-      >
-        <div className='flex flex-col justify-center items-center min-h-screen'>
-          <Image
-            src={'/images/logo.png'}
-            alt="summarization"
-            height="100"
-            width="100"
-            className="object-contain mt-3 bg-transparent"
-          />
-          <h1 className='font-bold text-2xl text-neutral-800 dark:text-neutral-200 mt-5'>Sign in</h1>
-          <p className='text-sm text-neutral-800 dark:text-neutral-200 '>to continue to your noterAi account</p>
-          <form className="flex flex-col w-full flex-wrap md:flex-nowrap gap-4 mt-10 my-8" onSubmit={handleSubmit}>
-            <Input
+    <div className="max-w-md w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-white dark:bg-black">
+      <h2 className="font-bold text-xl text-neutral-800 dark:text-neutral-200">
+        Welcome to NoterAi
+      </h2>
+      <p className="text-neutral-600 text-sm max-w-sm mt-2 dark:text-neutral-300">
+        Sign in to NoterAi for better services
+      </p>
+
+      <form className="my-8" onSubmit={handleSubmit}>
+
+        <LabelInputContainer className="mb-4">
+          <Label htmlFor="email">Email Address</Label>
+          <Input
               isClearable
               type="email" 
               variant='bordered' 
@@ -96,7 +79,10 @@ function Loginpage() {
               }
               className='w-96'
             />
-            <Input
+        </LabelInputContainer>
+        <LabelInputContainer className="mb-4">
+          <Label htmlFor="password">Password</Label>
+          <Input
               label="Password"
               variant="bordered"
               placeholder="Enter your password"
@@ -114,14 +100,43 @@ function Loginpage() {
               value={password}
               onValueChange={setPass}
             />
-            <Button color="primary" variant='faded' type='submit'>
-              Log in &rarr;
-            </Button> 
-          </form>
-        </div>  
+        </LabelInputContainer>
         
-      </motion.div>
-    </AuroraBackground>
+
+        <button
+          className="bg-gradient-to-br relative group/btn from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"
+          type="submit"
+        >
+          Sign up &rarr;
+          <BottomGradient />
+        </button>
+
+        <div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent my-8 h-[1px] w-full" />
+        
+      </form>
     </div>
-  )}
-export default Loginpage
+  );
+}
+
+const BottomGradient = () => {
+  return (
+    <>
+      <span className="group-hover/btn:opacity-100 block transition duration-500 opacity-0 absolute h-px w-full -bottom-px inset-x-0 bg-gradient-to-r from-transparent via-cyan-500 to-transparent" />
+      <span className="group-hover/btn:opacity-100 blur-sm block transition duration-500 opacity-0 absolute h-px w-1/2 mx-auto -bottom-px inset-x-10 bg-gradient-to-r from-transparent via-indigo-500 to-transparent" />
+    </>
+  );
+};
+
+const LabelInputContainer = ({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) => {
+  return (
+    <div className={cn("flex flex-col space-y-2 w-full", className)}>
+      {children}
+    </div>
+  );
+};
