@@ -7,8 +7,18 @@ import {Input} from "@nextui-org/input";
 import {MailIcon} from '@/components/ui/MailIcon';
 import { EyeSlashFilledIcon } from '@/components/ui/EyeSlashFilledIcon';
 import { EyeFilledIcon } from '@/components/ui/EyeFilledIcon';
+import Link from "next/link";
 
 export function LoginForm() {
+
+  const a=<Link href="password/forgot" className="text-blue-700 font-semibold text-xs ">Forgot password?</Link>
+  const text="Check your credentials. We couldn't match your email or password."
+  const errormessage=(
+    <>
+      {text}<br/>{a}
+    </>
+  )
+  const [visible,setvisibility]=useState(false)
 
   const router=useRouter()
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
@@ -29,6 +39,7 @@ export function LoginForm() {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+    setvisibility(false)
     try{
       const response = await fetch(`${apiBaseUrl}/auth/signin`, {
         method: "POST",
@@ -39,11 +50,12 @@ export function LoginForm() {
       });
 
       const data = await response.json();
-
+      
       if (response.ok) {
         router.push(`/auth/verify?email=${email}`);
       } else {
         console.error("Verification failed", data);
+        setvisibility(true)
       }
     } catch (error) {
       console.error("Error verifying email", error);
@@ -95,6 +107,8 @@ export function LoginForm() {
                   )}
                 </button>
               }
+              isInvalid={visible}
+              errorMessage={errormessage}
               type={isVisible ? "text" : "password"}
               className="w-96"
               value={password}
@@ -102,6 +116,9 @@ export function LoginForm() {
             />
         </LabelInputContainer>
         
+        <div>
+          
+        </div>
 
         <button
           className="bg-gradient-to-br relative group/btn from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"

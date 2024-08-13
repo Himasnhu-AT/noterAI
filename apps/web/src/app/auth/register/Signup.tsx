@@ -108,7 +108,7 @@ export function SignupForm() {
             onChange={handleChange}
           />
         </LabelInputContainer>
-        <LabelInputContainer className="mb-8">
+        <LabelInputContainer className="mb-4">
           <Label htmlFor="username">Username</Label>
           <Input
             id="username"

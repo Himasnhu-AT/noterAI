@@ -192,7 +192,7 @@ export class AuthService {
       },
     });
 
-    return `Password changed successfully!`;
+    return { message: 'Password changed successfully!' };
   }
 
   async updatePassword(
@@ -283,8 +283,10 @@ export class AuthService {
       throw new HttpException('User not found', HttpStatus.NOT_FOUND);
     }
 
-    if (!bcrypt.compare(password, (user as { password: string }).password)) {
-      throw new HttpException('Invalid password', HttpStatus.UNAUTHORIZED);
+    const isPasswordValid = await bcrypt.compare(password, (user as { password: string }).password);
+
+    if (!isPasswordValid) {
+        throw new HttpException('Invalid password', HttpStatus.UNAUTHORIZED);
     }
 
     const payload = {
@@ -295,6 +297,18 @@ export class AuthService {
     };
 
     const access_token: string = this.jwtService.sign(payload) || '';
+
+    const verificationCode = Math.random().toString(8).substring(2);
+
+    try {
+      await this.redisClient.set(email, verificationCode);
+    } catch (error) {
+      return error;
+    } finally {
+      const subject = 'Email Verification';
+      const text = `Your verification code is ${verificationCode}`;
+      await this.sendVerificationCode(email, subject, text);
+    }
 
     // Set the access_token as a cookie
     response.cookie('access_token', access_token, { httpOnly: true });

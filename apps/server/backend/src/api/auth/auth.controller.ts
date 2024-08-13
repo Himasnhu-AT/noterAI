@@ -4,6 +4,7 @@ import {
   Get,
   Param,
   Post,
+  Query,
   Req,
   Res,
   UseGuards,
@@ -42,7 +43,7 @@ export class AuthController {
 
   @Public()
   @Get('password/forgot')
-  forgotPassword(@Param() email: string) {
+  forgotPassword(@Query('email') email: string) {
     return this.authService.forgotPassword(email);
   }
 
