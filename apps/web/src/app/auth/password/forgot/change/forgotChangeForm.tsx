@@ -10,7 +10,7 @@ import { EyeFilledIcon } from '@/components/ui/EyeFilledIcon';
 export function ForgotChangeForm() {
     const [token,setToken]=useState('')
     const searchParams = useSearchParams();
-    const email = searchParams.get('email');
+    const email = searchParams?.get('email');
 
     const router=useRouter()
     const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;

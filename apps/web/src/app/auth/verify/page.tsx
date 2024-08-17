@@ -15,7 +15,7 @@ function Verify() {
   const router=useRouter()
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   const searchParams = useSearchParams();
-  const email = searchParams.get('email');
+  const email = searchParams?.get('email');
 
   const handleChange = (e: { target: { name: any; value: any; }; }) => {
     setToken(e.target.value)
