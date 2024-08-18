@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Navigationbar from "@/components/Navigationbar";
-import {Providers} from "./providers";
 import { Suspense } from "react";
-
+import Navigationbar from "@/components/Navigationbar";
+import { Providers } from "./providers";
+import ClientLayout from "@/components/ClientLayout"; // Import the new client component
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,10 +22,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Providers>
-          <div><Navigationbar /></div>
-          <Suspense fallback={<div>Loading...</div>}>
-          {children}
-          </Suspense>
+            <Suspense fallback={<div>Loading...</div>}>
+              <ClientLayout>{children}</ClientLayout>
+            </Suspense>
         </Providers>
       </body>
     </html>

@@ -50,13 +50,15 @@ function Navigationbar() {
                 </NavbarContent>
 
                 <NavbarContent justify="end">
-                    <NavbarItem className="hidden lg:flex">
-                    <Link href="#">Login</Link>
+                    <NavbarItem className="">
+                        <Button as={Link} color="primary" href="/auth/login" variant="flat" className='bg-transparent text-1.5xl text-'>
+                            Login
+                        </Button>
                     </NavbarItem>
                     <NavbarItem>
-                    <Button as={Link} color="primary" href="/register" variant="flat" className='bg-blue-100 text-blue-600'>
-                        Sign Up
-                    </Button>
+                        <Button as={Link} color="primary" href="/auth/register" variant="flat" className='bg-blue-100 text-blue-600'>
+                            Sign Up
+                        </Button>
                     </NavbarItem>
                 </NavbarContent>
 
