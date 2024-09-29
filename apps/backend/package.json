@@ -6,21 +6,26 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
+    "setupProj": "pnpm i && pnpm db:up && pnpm db:dev",
     "build": "nest build",
-    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
-    "start": "nest start",
-    "start:dev": "nest start --watch",
+    "dev": "nest start --watch",
+    "dev:main": "nest start --watch",
+    "dev:ai-service": "nest start --watch ai-service",
+    "prod": "turbo ",
+    "prod:main": "node dist/apps/backend/main",
+    "prod:ai-service": "node dist/apps/ai-service/main",
     "start:debug": "nest start --debug --watch",
-    "start:prod": "node dist/main",
+    "format": "prettier --write \"apps/**/*.ts\" \"libs/**/*.ts\"",
+    "start": "nest start",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "test:e2e": "jest --config ./apps/backend/test/jest-e2e.json",
     "test:e2e:watch": "jest --config ./test/jest-e2e.json --watch",
-    "db:up": "docker-compose -f ../../../docker/docker-compose-dB.yml up -d",
-    "db:down": "docker-compose -f ../../../docker-compose-dB.yml down",
+    "db:up": "docker compose -f ../../docker/docker-compose-dB.yml up -d",
+    "db:down": "docker compose -f ../../docker/docker-compose-dB.yml down",
     "db:generate": "npx prisma generate",
     "db:dev": "npx prisma migrate dev deploy",
     "db:studio": "npx prisma studio",
@@ -77,7 +82,7 @@
       "json",
       "ts"
     ],
-    "rootDir": "src",
+    "rootDir": ".",
     "testRegex": ".*\\.spec\\.ts$",
     "transform": {
       "^.+\\.(t|j)s$": "ts-jest"
@@ -85,7 +90,10 @@
     "collectCoverageFrom": [
       "**/*.(t|j)s"
     ],
-    "coverageDirectory": "../coverage",
-    "testEnvironment": "node"
+    "coverageDirectory": "./coverage",
+    "testEnvironment": "node",
+    "roots": [
+      "<rootDir>/apps/"
+    ]
   }
 }

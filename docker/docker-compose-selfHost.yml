@@ -1,0 +1,37 @@
+services:
+  noterai-frontend:
+    build:
+      context: ../apps/web
+      dockerfile: dockerfile
+    env_file:
+      - .env.frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - noterai-backend
+
+  noterai-backend:
+    build:
+      context: ../apps/server/backend
+      dockerfile: dockerfile
+    env_file:
+      - .env.backend
+    ports:
+      - "4000:4000"
+    depends_on:
+      - redis
+      - postgres
+
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+
+  postgres:
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=pass
+      - POSTGRES_DB=db

@@ -1,4 +1,4 @@
-name: 'Build'
+name: "Build"
 
 on:
   push:
@@ -19,12 +19,10 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '20'
+          node-version: "20"
 
       - name: Install dependencies
         run: npm install
-        working-directory:  ./apps/server/backend
 
-      - name: Build
-        run: npm run test
-        working-directory:  ./apps/server/backend
+      - name: Run Tests
+        run: npm test
