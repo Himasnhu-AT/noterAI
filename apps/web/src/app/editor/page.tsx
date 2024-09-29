@@ -25,7 +25,7 @@ export default function Home() {
   return (
     <div className="container mx-auto px-4">
       <Head>
-        <title>NotionAI Alternative</title>
+        <title>Demo</title>
         <meta
           name="description"
           content="An open-source NotionAI alternative"
@@ -34,7 +34,7 @@ export default function Home() {
       </Head>
 
       <main className="py-8">
-        <h1 className="text-4xl font-bold mb-8">NotionAI Alternative</h1>
+        <h1 className="text-4xl font-bold mb-8">Demo</h1>
         {document ? (
           <Editor initialDocument={document} />
         ) : (
