@@ -1,9 +1,7 @@
 import { IsNotEmpty, IsString } from 'class-validator';
 
-class BookDto {
+export class BookDto {
   @IsString()
   @IsNotEmpty()
   title: string;
 }
-
-export { BookDto };

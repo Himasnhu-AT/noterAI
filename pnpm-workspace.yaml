@@ -1,0 +1,5 @@
+packages:
+  - "apps/backend"
+  - "apps/web"
+  - "packages/*"
+  - "dev-docs"

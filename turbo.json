@@ -2,55 +2,16 @@
   "$schema": "https://turbo.build/schema.json",
   "tasks": {
     "build": {
-      "dependsOn": ["backend:build", "frontend:build"],
-      "outputs": [".next/**", "!.next/cache/**"],
-      "cache": true
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**"]
     },
     "dev": {
-      "dependsOn": ["frontend:dev", "backend:dev"],
-      "persistent": true,
-      "cache": true
+      "dependsOn": ["^dev"],
+      "cache": false
     },
-    "prod": {
-      "dependsOn": ["backend:prod", "frontend:prod"],
-      "cache": true
-    },
-    "backend:dev": {
-      "dependsOn": ["dev:main", "dev:ai-service"],
-      "cache": true
-    },
-    "backend:build": {
-      "dependsOn": ["build:main", "build:ai-service"],
-      "cache": true
-    },
-    "backend:prod": {
-      "dependsOn": ["prod:main", "prod:ai-service"],
-      "cache": true
-    },
-    "frontend:dev": {
-      "dependsOn": ["dev"],
-      "cache": true
-    },
-    "frontend:build": {
-      "dependsOn": ["build"],
-      "cache": true
-    },
-    "frontend:prod": {
-      "dependsOn": ["start"],
-      "cache": true
-    },
-    "format": {
-      "dependsOn": ["^format"],
-      "outputs": [],
-      "cache": true
-    },
-    "lint": {
-      "dependsOn": ["^lint"],
-      "outputs": [],
-      "cache": true
-    },
-    "setupProj": {
-      "dependsOn": ["^setupProj"]
+    "start": {
+      "dependsOn": ["^start"],
+      "cache": false
     }
   }
 }

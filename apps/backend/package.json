@@ -1,5 +1,5 @@
 {
-  "name": "backend",
+  "name": "@noterai/backend",
   "version": "0.1.0",
   "description": "",
   "author": "",
@@ -7,11 +7,11 @@
   "license": "UNLICENSED",
   "scripts": {
     "setupProj": "pnpm i && pnpm db:up && pnpm db:dev",
-    "build": "nest build",
+    "build": "nest build && nest build ai-service",
     "dev": "nest start --watch",
     "dev:main": "nest start --watch",
     "dev:ai-service": "nest start --watch ai-service",
-    "prod": "turbo ",
+    "prod": "npm run prod:main && npm run prod:ai-service",
     "prod:main": "node dist/apps/backend/main",
     "prod:ai-service": "node dist/apps/ai-service/main",
     "start:debug": "nest start --debug --watch",
