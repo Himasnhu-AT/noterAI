@@ -1,13 +1,13 @@
 import { useState } from "react";
-import { Document, Block } from "../types";
 import BlockComponent from "./BlockComponent";
+import { Document, Block } from "@/types/editor";
 import Toolbar from "./Toolbar";
 import {
-  updateDocument,
   createBlock,
-  updateBlock,
   deleteBlock,
-} from "../utils/api";
+  updateBlock,
+  updateDocument,
+} from "@/utils/editor_api";
 
 interface EditorProps {
   initialDocument: Document;
