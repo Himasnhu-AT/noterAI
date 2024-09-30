@@ -2,8 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { BookDto } from './dto/book.dto';
 import { SectionDto } from './dto/section.dto';
 import { NoteDto } from './dto/note.dto';
-import { PrismaService } from 'apps/backend/prisma/prisma.service';
-import RetrieveInfoFromRequest from 'apps/backend/handlers/retriveInfoFromRequest.global';
+import RetrieveInfoFromRequest from 'libs/handlers/retriveInfoFromRequest.global';
+import { PrismaService } from 'libs/prisma/prisma.service';
 
 @Injectable()
 export class UserService {
@@ -70,6 +70,9 @@ export class UserService {
     note: NoteDto,
   ) {
     const userId = RetrieveInfoFromRequest(request).id;
+
+    //! TODO: Handle Note content
+    console.log(note);
 
     if (!userId) {
       throw new Error('Unable to retrieve user information, please try again');

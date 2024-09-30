@@ -10,12 +10,12 @@ import { JwtService } from '@nestjs/jwt';
 import Redis from 'ioredis';
 import * as bcrypt from 'bcrypt';
 import { randomBytes } from 'crypto';
-import { PrismaService } from 'apps/backend/prisma/prisma.service';
-import sendEmail from 'apps/backend/handlers/email.global';
-import handleErrors from 'apps/backend/handlers/handleErrors.global';
-import RetrieveInfoFromRequest from 'apps/backend/handlers/retriveInfoFromRequest.global';
 import { SignUpDto } from './dto/signup.dto';
 import { SignInDto } from './dto/signin.dto';
+import sendEmail from 'libs/handlers/email.global';
+import handleErrors from 'libs/handlers/handleErrors.global';
+import RetrieveInfoFromRequest from 'libs/handlers/retriveInfoFromRequest.global';
+import { PrismaService } from 'libs/prisma/prisma.service';
 
 @Injectable()
 export class AuthService {

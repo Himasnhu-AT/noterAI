@@ -3,15 +3,27 @@
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
-      "outputs": ["dist/**"]
+      "cache": true
     },
     "dev": {
       "dependsOn": ["^dev"],
-      "cache": false
+      "cache": true
     },
     "start": {
-      "dependsOn": ["^start"],
-      "cache": false
+      "dependsOn": ["build", "^start"],
+      "cache": true
+    },
+    "test": {
+      "dependsOn": ["^test"],
+      "cache": true
+    },
+    "lint": {
+      "dependsOn": ["^lint"],
+      "cache": true
+    },
+    "format": {
+      "dependsOn": ["^format"],
+      "cache": true
     }
   }
 }

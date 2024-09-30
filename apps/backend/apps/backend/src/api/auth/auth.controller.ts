@@ -10,10 +10,10 @@ import {
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { AuthGuard } from '@nestjs/passport';
-import { Public } from 'apps/backend/custom.decorator/custom.decorator';
-import RetrieveInfoFromRequest from 'apps/backend/handlers/retriveInfoFromRequest.global';
 import { SignUpDto } from './dto/signup.dto';
 import { SignInDto } from './dto/signin.dto';
+import { Public } from 'libs/custom.decorator/custom.decorator';
+import RetrieveInfoFromRequest from 'libs/handlers/retriveInfoFromRequest.global';
 
 @Controller('auth')
 export class AuthController {

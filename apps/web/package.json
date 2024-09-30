@@ -6,8 +6,9 @@
     "setupProj": "pnpm i",
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "start": "pnpm build && next start",
+    "lint": "next lint",
+    "format": "prettier --write ."
   },
   "dependencies": {
     "@nextui-org/navbar": "^2.0.36",

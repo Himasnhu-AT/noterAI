@@ -11,26 +11,25 @@ import {
 import { useRouter } from "next/navigation";
 
 export function SignupForm() {
-
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
     email: "",
     password: "",
-    userName: ""
+    userName: "",
   });
   const router = useRouter();
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
-  const handleChange = (e: { target: { name: any; value: any; }; }) => {
+  const handleChange = (e: { target: { name: any; value: any } }) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
-      [name]: value
+      [name]: value,
     }));
   };
 
-  const handleSubmit = async (e: { preventDefault: () => void; }) => {
+  const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     try {
       const { firstName, lastName, ...rest } = formData;
@@ -42,23 +41,19 @@ export function SignupForm() {
       const response = await fetch(`${apiBaseUrl}/auth/signup`, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(dataToSend)
+        body: JSON.stringify(dataToSend),
       });
-      
-      const data = await response.json();
-      console.log("Form submitted",data);
 
-      if(response.ok)
-      {
+      const data = await response.json();
+      console.log("Form submitted", data);
+
+      if (response.ok) {
         router.push(`/auth/verify?email=${formData.email}`);
+      } else {
+        console.error("Error fetching api");
       }
-      else
-      {
-        console.error("Error fetching api")
-      }
-      
     } catch (error) {
       console.error("Error submitting form", error);
     }
@@ -130,7 +125,6 @@ export function SignupForm() {
             onChange={handleChange}
           />
         </LabelInputContainer>
-        
 
         <button
           className="bg-gradient-to-br relative group/btn from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"
@@ -141,7 +135,6 @@ export function SignupForm() {
         </button>
 
         <div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent my-8 h-[1px] w-full" />
-        
       </form>
     </div>
   );
