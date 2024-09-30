@@ -1,10 +1,8 @@
 import { Module } from '@nestjs/common';
-import { EditorController } from './editor.controller';
-import { PrismaService } from 'libs/prisma/prisma.service';
+import { EditorGateway } from './editor.gateway';
 import { EditorService } from './editor.service';
 
 @Module({
-  controllers: [EditorController],
-  providers: [EditorService, PrismaService],
+  providers: [EditorGateway, EditorService],
 })
 export class EditorModule {}
