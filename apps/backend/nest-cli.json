@@ -27,6 +27,33 @@
       "compilerOptions": {
         "tsConfigPath": "apps/ai-service/tsconfig.app.json"
       }
+    },
+    "content_mgmt": {
+      "type": "application",
+      "root": "apps/content_mgmt",
+      "entryFile": "main",
+      "sourceRoot": "apps/content_mgmt/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/content_mgmt/tsconfig.app.json"
+      }
+    },
+    "collab_tools": {
+      "type": "application",
+      "root": "apps/collab_tools",
+      "entryFile": "main",
+      "sourceRoot": "apps/collab_tools/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/collab_tools/tsconfig.app.json"
+      }
+    },
+    "sharing_publishing_integration": {
+      "type": "application",
+      "root": "apps/sharing_publishing_integration",
+      "entryFile": "main",
+      "sourceRoot": "apps/sharing_publishing_integration/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/sharing_publishing_integration/tsconfig.app.json"
+      }
     }
   }
 }

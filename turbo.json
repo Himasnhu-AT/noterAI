@@ -2,15 +2,85 @@
   "$schema": "https://turbo.build/schema.json",
   "tasks": {
     "build": {
-      "dependsOn": ["^build"],
+      "dependsOn": [
+        "^build",
+        "build:main",
+        "build:ai-service",
+        "build:collab_tools",
+        "build:content_mgmt",
+        "build:sharing_publishing_integration"
+      ],
+      "cache": true
+    },
+    "build:main": {
+      "cache": true
+    },
+    "build:ai-service": {
+      "cache": true
+    },
+    "build:collab_tools": {
+      "cache": true
+    },
+
+    "build:content_mgmt": {
+      "cache": true
+    },
+    "build:sharing_publishing_integration": {
       "cache": true
     },
     "dev": {
-      "dependsOn": ["^dev"],
+      "dependsOn": [
+        "^dev",
+        "dev:main",
+        "dev:ai-service",
+        "dev:collab_tools",
+        "dev:content_mgmt",
+        "dev:sharing_publishing_integration"
+      ],
+      "cache": true
+    },
+    "dev:main": {
+      "cache": true
+    },
+    "dev:ai-service": {
+      "cache": true
+    },
+    "dev:collab_tools": {
+      "cache": true
+    },
+
+    "dev:content_mgmt": {
+      "cache": true
+    },
+    "dev:sharing_publishing_integration": {
       "cache": true
     },
     "start": {
-      "dependsOn": ["build", "^start"],
+      "dependsOn": [
+        "build",
+        "^start",
+        "prod:main",
+        "prod:ai-service",
+        "prod:collab_tools",
+        "prod:content_mgmt",
+        "prod:sharing_publishing_integration"
+      ],
+      "cache": true
+    },
+    "prod:main": {
+      "cache": true
+    },
+    "prod:ai-service": {
+      "cache": true
+    },
+    "prod:collab_tools": {
+      "cache": true
+    },
+
+    "prod:content_mgmt": {
+      "cache": true
+    },
+    "prod:sharing_publishing_integration": {
       "cache": true
     },
     "test": {
