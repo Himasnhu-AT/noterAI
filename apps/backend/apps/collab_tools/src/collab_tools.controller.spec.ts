@@ -11,7 +11,9 @@ describe('CollabToolsController', () => {
       providers: [CollabToolsService],
     }).compile();
 
-    collabToolsController = app.get<CollabToolsController>(CollabToolsController);
+    collabToolsController = app.get<CollabToolsController>(
+      CollabToolsController,
+    );
   });
 
   describe('root', () => {

@@ -3,7 +3,9 @@ import { SharingPublishingIntegrationService } from './sharing_publishing_integr
 
 @Controller()
 export class SharingPublishingIntegrationController {
-  constructor(private readonly sharingPublishingIntegrationService: SharingPublishingIntegrationService) {}
+  constructor(
+    private readonly sharingPublishingIntegrationService: SharingPublishingIntegrationService,
+  ) {}
 
   @Get()
   getHello(): string {
