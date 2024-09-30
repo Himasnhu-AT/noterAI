@@ -2,6 +2,11 @@
   "name": "@noterai/monorepo",
   "version": "0.0.1",
   "description": "Alternative of Notion, with cool features and AI functionality",
+  "author": {
+    "name": "Himanshu",
+    "email": "hyattherate2005@gmail.com",
+    "url": "https://github.com/Himasnhu-AT"
+  },
   "main": "index.js",
   "scripts": {
     "pre-commit": "pnpm format && pnpm lint && pnpm build",
@@ -34,7 +39,6 @@
     "notes"
   ],
   "packageManager": "pnpm@9.11.0",
-  "author": "Himanshu <git:https://github.com/himasnhu-at>",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Himasnhu-AT/noterAI/issues"

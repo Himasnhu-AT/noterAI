@@ -1,9 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { BookDto } from './dto/book.dto';
-import { SectionDto } from './dto/section.dto';
-import { NoteDto } from './dto/note.dto';
 import RetrieveInfoFromRequest from 'libs/handlers/retriveInfoFromRequest.global';
 import { PrismaService } from 'libs/prisma/prisma.service';
+import { BookDto, SectionDto, NoteDto } from 'libs/types';
 
 @Injectable()
 export class UserService {
@@ -90,17 +88,18 @@ export class UserService {
       throw new Error('Section not found');
     }
 
-    return await this.prisma.note.create({
-      data: {
-        // TODO save content
-        // content: note.content,
-        section: {
-          connect: {
-            id: sectionId,
-          },
-        },
-      },
-    });
+    // return await this.prisma.note.create({
+    //   data: {
+    //     // TODO save content
+    //     // content: note.content,
+    //     section: {
+    //       connect: {
+    //         id: sectionId,
+    //       },
+    //     },
+    //   },
+    // });
+    return 'TODO';
   }
 
   async getBooks(request: any) {

@@ -10,10 +10,9 @@ import {
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { AuthGuard } from '@nestjs/passport';
-import { SignUpDto } from './dto/signup.dto';
-import { SignInDto } from './dto/signin.dto';
 import { Public } from 'libs/custom.decorator/custom.decorator';
 import RetrieveInfoFromRequest from 'libs/handlers/retriveInfoFromRequest.global';
+import { SignUpDto, SignInDto } from 'libs/types';
 
 @Controller('auth')
 export class AuthController {

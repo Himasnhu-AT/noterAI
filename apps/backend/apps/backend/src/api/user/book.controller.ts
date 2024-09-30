@@ -11,10 +11,8 @@ import {
 } from '@nestjs/common';
 import { UserService } from './book.service';
 import { AuthGuard } from '@nestjs/passport';
-import { BookDto } from './dto/book.dto';
-import { SectionDto } from './dto/section.dto';
-import { NoteDto } from './dto/note.dto';
 import { Public } from 'libs/custom.decorator/custom.decorator';
+import { BookDto, SectionDto, NoteDto } from 'libs/types';
 
 @Controller('user')
 export class UserController {
