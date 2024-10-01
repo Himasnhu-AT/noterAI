@@ -11,12 +11,17 @@ describe('SharingPublishingIntegrationController', () => {
       providers: [SharingPublishingIntegrationService],
     }).compile();
 
-    sharingPublishingIntegrationController = app.get<SharingPublishingIntegrationController>(SharingPublishingIntegrationController);
+    sharingPublishingIntegrationController =
+      app.get<SharingPublishingIntegrationController>(
+        SharingPublishingIntegrationController,
+      );
   });
 
   describe('root', () => {
     it('should return "Hello World!"', () => {
-      expect(sharingPublishingIntegrationController.getHello()).toBe('Hello World!');
+      expect(sharingPublishingIntegrationController.getHello()).toBe(
+        'Hello World!',
+      );
     });
   });
 });

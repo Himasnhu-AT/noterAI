@@ -10,12 +10,11 @@ import { JwtService } from '@nestjs/jwt';
 import Redis from 'ioredis';
 import * as bcrypt from 'bcrypt';
 import { randomBytes } from 'crypto';
-import { SignUpDto } from './dto/signup.dto';
-import { SignInDto } from './dto/signin.dto';
 import sendEmail from 'libs/handlers/email.global';
 import handleErrors from 'libs/handlers/handleErrors.global';
 import RetrieveInfoFromRequest from 'libs/handlers/retriveInfoFromRequest.global';
 import { PrismaService } from 'libs/prisma/prisma.service';
+import { SignUpDto, SignInDto } from 'libs/types';
 
 @Injectable()
 export class AuthService {

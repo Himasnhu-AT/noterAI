@@ -1,3 +1,4 @@
+// prisma/schema.prisma
 generator client {
   provider = "prisma-client-js"
 }
@@ -7,47 +8,59 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// User config
 model User {
   id         String  @id @default(cuid())
   name       String
   userName   String  @unique
   email      String  @unique
   password   String
-  token      String
+  token      String?
   isVerified Boolean @default(false)
 
-  books    Book[]
-  settings UserSettings @relation(fields: [userSettingsId], references: [id])
+  // Relationships
+  books          Book[]
+  settings       UserSettings? @relation(fields: [userSettingsId], references: [id])
+  userSettingsId String?       @unique
 
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
-  userSettingsId String
+  // Timestamps
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
+// User settings
 model UserSettings {
   id String @id @default(cuid())
 
-  User                 User[]
+  // Relationships
+  user User? @relation
+
   emailsSubscriptionId String
+  emailSubscription    EmailsSubscription @relation(fields: [emailsSubscriptionId], references: [id])
 
-  emailSubscription EmailsSubscription @relation(fields: [emailsSubscriptionId], references: [id])
-
+  // Timestamps
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
+// User email subscription
 model EmailsSubscription {
-  id           String         @id @default(uuid())
-  UserSettings UserSettings[]
+  id String @id @default(uuid())
 
+  // Relationships
+  userSettings UserSettings[]
+
+  // Subscription types
   announcements    Boolean @default(true)
-  SecurityFeatures Boolean @default(true)
-  ProductUpgrades  Boolean @default(true)
+  securityFeatures Boolean @default(true)
+  productUpgrades  Boolean @default(true)
 
+  // Timestamps
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
+// Book config
 model Book {
   id       String    @id @default(uuid())
   title    String
@@ -55,36 +68,66 @@ model Book {
   userId   String
   sections Section[]
 
+  // Timestamps
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
+// Section config
 model Section {
   id     String @id @default(uuid())
   title  String
   book   Book   @relation(fields: [bookId], references: [id])
   bookId String
-  notes  Note[]
+  notes  Note[] // Linking notes to sections
 
+  // Timestamps
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
+// Merged Note and Document model
 model Note {
   id        String  @id @default(uuid())
+  title     String // Title of the note
   section   Section @relation(fields: [sectionId], references: [id])
   sectionId String
-  // versions  NoteVersion[]
 
+  // Content of the note
+  blocks Block[]
+
+  // Timestamps
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
-//? Implemented in future version
+// Block config, which represents individual content pieces in a document
+model Block {
+  id     String @id @default(uuid())
+  Note   Note   @relation(fields: [noteId], references: [id])
+  noteId String
+
+  // Content of the block (e.g., text, image, etc.)
+  type    typeEnum
+  content String
+
+  // Timestamps
+  createdAt DateTime @default(now())
+}
+
+enum typeEnum {
+  TEXT
+  IMAGE
+  LINKS
+  INTERNAL_LINK // Link to another note
+  // other types can be added here
+}
+
+// Uncomment this if you plan to implement versioning in the future
 // model NoteVersion {
 //   id        Int      @id @default(autoincrement())
 //   note      Note     @relation(fields: [noteId], references: [id])
-//   noteId    Int
+//   noteId    String
 //   content   String
 //   version   Int
 //   createdAt DateTime @default(now())
