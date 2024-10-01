@@ -2,7 +2,6 @@ import {
   Body,
   Controller,
   Get,
-  Param,
   Post,
   Query,
   Req,
@@ -10,11 +9,10 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import SignUpDto from './dto/signup.dto';
-import { Public } from 'src/custom.decorator/custom.decorator';
-import SignInDto from './dto/signin.dto';
 import { AuthGuard } from '@nestjs/passport';
-import RetrieveInfoFromRequest from 'src/handlers/retriveInfoFromRequest.global';
+import { Public } from 'libs/custom.decorator/custom.decorator';
+import RetrieveInfoFromRequest from 'libs/handlers/retriveInfoFromRequest.global';
+import { SignUpDto, SignInDto } from 'libs/types';
 
 @Controller('auth')
 export class AuthController {

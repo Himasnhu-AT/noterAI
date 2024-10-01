@@ -1,9 +1,11 @@
 import { IsNotEmpty, IsString } from 'class-validator';
 
-class SectionDto {
+export class CreateBookDto {
   @IsString()
   @IsNotEmpty()
   title: string;
-}
 
-export { SectionDto };
+  @IsString()
+  @IsNotEmpty()
+  userId: string;
+}

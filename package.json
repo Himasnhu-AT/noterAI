@@ -2,20 +2,25 @@
   "name": "@noterai/monorepo",
   "version": "0.0.1",
   "description": "Alternative of Notion, with cool features and AI functionality",
+  "author": {
+    "name": "Himanshu",
+    "email": "hyattherate2005@gmail.com",
+    "url": "https://github.com/Himasnhu-AT"
+  },
   "main": "index.js",
   "scripts": {
+    "pre-commit": "pnpm format && pnpm lint && pnpm build",
     "build": "turbo run build",
     "prod": "turbo run start",
     "dev": "turbo run dev",
-    "backend:dev": "turbo run backend:dev",
-    "backend:prod": "turbo run backend:prod",
-    "backend:build": "turbo run backend:build",
-    "frontend:dev": "turbo run frontend:dev",
-    "frontend:prod": "turbo run frontend:prod",
-    "frontend:build": "turbo run frontend:build",
+    "backend:dev": "turbo run dev --filter=@noterai/backend",
+    "backend:prod": "turbo run prod --filter=@noterai/backend",
+    "backend:build": "turbo run build --filter=@noterai/backend",
+    "frontend:dev": "turbo run dev --filter=@noterai/web",
+    "frontend:prod": "turbo run prod --filter=@noterai/web",
+    "frontend:build": "turbo run build --filter=@noterai/web",
     "lint": "turbo run lint",
     "format": "turbo run format",
-    "setupProj": "turbo run setupProj",
     "test": "jest"
   },
   "workspaces": [
@@ -33,7 +38,7 @@
     "OpenSource",
     "notes"
   ],
-  "author": "Himanshu <git:https://github.com/himasnhu-at>",
+  "packageManager": "pnpm@9.11.0",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Himasnhu-AT/noterAI/issues"

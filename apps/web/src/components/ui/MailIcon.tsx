@@ -1,5 +1,7 @@
 import React from "react";
-export const MailIcon = (props: React.JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>) => (
+export const MailIcon = (
+  props: React.JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>,
+) => (
   <svg
     aria-hidden="true"
     fill="none"

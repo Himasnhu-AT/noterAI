@@ -10,11 +10,9 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { UserService } from './book.service';
-import { Public } from 'src/custom.decorator/custom.decorator';
 import { AuthGuard } from '@nestjs/passport';
-import { BookDto } from './dto/book.dto';
-import { SectionDto } from './dto/section.dto';
-import { NoteDto } from './dto/note.dto';
+import { Public } from 'libs/custom.decorator/custom.decorator';
+import { BookDto, SectionDto, NoteDto } from 'libs/types';
 
 @Controller('user')
 export class UserController {
@@ -55,18 +53,13 @@ export class UserController {
 
   @Get('books')
   @UseGuards(AuthGuard('jwt'))
-  getBooks(
-    @Req() request,
-  ) {
+  getBooks(@Req() request) {
     return this.userService.getBooks(request);
   }
 
   @Get(':bookId/sections')
   @UseGuards(AuthGuard('jwt'))
-  getSections(
-    @Param('bookId') bookId: string,
-    @Req() request,
-  ) {
+  getSections(@Param('bookId') bookId: string, @Req() request) {
     return this.userService.getSections(request, bookId);
   }
 
@@ -147,10 +140,7 @@ export class UserController {
 
   @Delete(':bookId/delete')
   @UseGuards(AuthGuard('jwt'))
-  deleteBook(
-    @Param('bookId') bookId: string,
-    @Req() request,
-  ) {
+  deleteBook(@Param('bookId') bookId: string, @Req() request) {
     return this.userService.deleteBook(request, bookId);
-  }  
+  }
 }
