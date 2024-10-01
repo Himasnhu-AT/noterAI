@@ -12,7 +12,8 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 
-export function Sidebarlayout({ children }: { children?: React.ReactNode }) { // `children` is now optional
+export function Sidebarlayout({ children }: { children?: React.ReactNode }) {
+  // `children` is now optional
   const links = [
     {
       label: "Dashboard",
@@ -45,9 +46,7 @@ export function Sidebarlayout({ children }: { children?: React.ReactNode }) { //
   ];
   const [open, setOpen] = useState(false);
   return (
-    <div
-      className="flex flex-row bg-gray-100 dark:bg-neutral-800 h-screen"
-    >
+    <div className="flex flex-row bg-gray-100 dark:bg-neutral-800 h-screen">
       <Sidebar open={open} setOpen={setOpen}>
         <SidebarBody className="justify-between gap-10">
           <div className="flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
@@ -61,10 +60,10 @@ export function Sidebarlayout({ children }: { children?: React.ReactNode }) { //
         </SidebarBody>
       </Sidebar>
       <div className="flex flex-1">
-          <div className="hidden md:block p-2 md:p-10 rounded-tl-2xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900 flex-col gap-2 flex-1 w-full h-full">
-            {children}
-          </div>
-      </div>  
+        <div className="hidden md:block p-2 md:p-10 rounded-tl-2xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900 flex-col gap-2 flex-1 w-full h-full">
+          {children}
+        </div>
+      </div>
     </div>
   );
 }

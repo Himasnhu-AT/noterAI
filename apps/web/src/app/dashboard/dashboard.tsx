@@ -2,9 +2,5 @@
 import React, { useState } from "react";
 
 export function Dashboardpage() {
-  return (
-    <div>
-      Dashboardpage
-    </div>
-  );
+  return <div>Dashboardpage</div>;
 }

@@ -1,7 +1,6 @@
 import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
-import { HttpException, HttpStatus } from '@nestjs/common';
 
-class SignUpDto {
+export class SignUpDto {
   @IsString()
   @IsNotEmpty()
   name: string;
@@ -18,5 +17,3 @@ class SignUpDto {
   @IsNotEmpty()
   userName: string;
 }
-
-export default SignUpDto;

@@ -3,27 +3,38 @@ import React, { useEffect, useState } from "react";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
-import {Input} from "@nextui-org/input";
-import {MailIcon} from '@/components/ui/MailIcon';
+import { Input } from "@nextui-org/input";
+import { MailIcon } from "@/components/ui/MailIcon";
 import Link from "next/link";
 
 export function ForgotForm() {
-
-  const router=useRouter()
+  const router = useRouter();
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
-  const a=<Link href="/auth/register" className="text-blue-700 font-semibold text-xs ">Register</Link>
-  const text="Check your credentials. We couldn't find entered email in our data."
-  const text2="If you dont have a account "
-  const errorMessage=(
+  const a = (
+    <Link
+      href="/auth/register"
+      className="text-blue-700 font-semibold text-xs "
+    >
+      Register
+    </Link>
+  );
+  const text =
+    "Check your credentials. We couldn't find entered email in our data.";
+  const text2 = "If you dont have a account ";
+  const errorMessage = (
     <>
-    {text}<br/>{text2}{a}
+      {text}
+      <br />
+      {text2}
+      {a}
     </>
-  )
+  );
 
-  const [visible,setvisibility]=useState(false)
-  const [email, setEmail] = useState("")
+  const [visible, setvisibility] = useState(false);
+  const [email, setEmail] = useState("");
 
-  const validateEmail = (value: string) => value.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
+  const validateEmail = (value: string) =>
+    value.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
 
   const isInvalid = React.useMemo(() => {
     if (email === "") return false;
@@ -33,17 +44,20 @@ export function ForgotForm() {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    setvisibility(false)
-    try{
-      const response = await fetch(`${apiBaseUrl}/auth/password/forgot?email=${email}`, {
-        method: "GET",
-      });
+    setvisibility(false);
+    try {
+      const response = await fetch(
+        `${apiBaseUrl}/auth/password/forgot?email=${email}`,
+        {
+          method: "GET",
+        },
+      );
 
       if (response.ok) {
         router.push(`/auth/password/forgot/change?email=${email}`);
       } else {
         console.error("Email not found");
-        setvisibility(true)
+        setvisibility(true);
       }
     } catch (error) {
       console.error("Error fetching api", error);
@@ -59,35 +73,31 @@ export function ForgotForm() {
       </p>
 
       <form className="my-8" onSubmit={handleSubmit}>
-
         <LabelInputContainer className="mb-4">
           <Label htmlFor="email">Email Address</Label>
           <Input
-              isClearable
-              type="email" 
-              variant='bordered' 
-              size='md' 
-              label="Email"
-              value={email}
-              placeholder="Enter your email"
-              isInvalid={isInvalid}
-              color={isInvalid ? "danger" : "success"}
-              onValueChange={setEmail}
-              errorMessage="Please enter a valid email"
-              startContent={
-                <MailIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
-              }
-
-              className='w-96'
-            />
-            {visible && (
+            isClearable
+            type="email"
+            variant="bordered"
+            size="md"
+            label="Email"
+            value={email}
+            placeholder="Enter your email"
+            isInvalid={isInvalid}
+            color={isInvalid ? "danger" : "success"}
+            onValueChange={setEmail}
+            errorMessage="Please enter a valid email"
+            startContent={
+              <MailIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
+            }
+            className="w-96"
+          />
+          {visible && (
             <p className="text-red-500 text-xs mt-1">{errorMessage}</p>
-            )}
+          )}
         </LabelInputContainer>
-        
-        <div>
-          
-        </div>
+
+        <div></div>
 
         <button
           className="bg-gradient-to-br relative group/btn from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"
@@ -98,7 +108,6 @@ export function ForgotForm() {
         </button>
 
         <div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent my-8 h-[1px] w-full" />
-        
       </form>
     </div>
   );

@@ -6,17 +6,16 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { PrismaService } from 'src/prisma/prisma.service';
-import SignUpDto from './dto/signup.dto';
-import SignInDto from './dto/signin.dto';
-import handleErrors from 'src/handlers/handleErrors.global';
 import { JwtService } from '@nestjs/jwt';
-import sendEmail from 'src/handlers/email.global';
 import Redis from 'ioredis';
-import { emit } from 'process';
-import RetrieveInfoFromRequest from 'src/handlers/retriveInfoFromRequest.global';
 import * as bcrypt from 'bcrypt';
 import { randomBytes } from 'crypto';
+import { SignUpDto } from './dto/signup.dto';
+import { SignInDto } from './dto/signin.dto';
+import sendEmail from 'libs/handlers/email.global';
+import handleErrors from 'libs/handlers/handleErrors.global';
+import RetrieveInfoFromRequest from 'libs/handlers/retriveInfoFromRequest.global';
+import { PrismaService } from 'libs/prisma/prisma.service';
 
 @Injectable()
 export class AuthService {
@@ -69,7 +68,7 @@ export class AuthService {
     const hashedPassword = await bcrypt.hash(password, 10);
     const token = randomBytes(32).toString('hex');
 
-    let user = await this.prisma.user
+    const user = await this.prisma.user
       .create({
         data: {
           name,
@@ -116,7 +115,7 @@ export class AuthService {
 
     await this.redisClient.del(body.email);
 
-    let user = await this.prisma.user.update({
+    const user = await this.prisma.user.update({
       where: {
         email: body.email,
       },
@@ -175,6 +174,7 @@ export class AuthService {
     const verificationCode = await this.redisClient
       .get(body.email)
       .catch((error) => {
+        console.error(error);
         throw new NotFoundException('Token not found for given Email');
       });
 
@@ -283,10 +283,13 @@ export class AuthService {
       throw new HttpException('User not found', HttpStatus.NOT_FOUND);
     }
 
-    const isPasswordValid = await bcrypt.compare(password, (user as { password: string }).password);
+    const isPasswordValid = await bcrypt.compare(
+      password,
+      (user as { password: string }).password,
+    );
 
     if (!isPasswordValid) {
-        throw new HttpException('Invalid password', HttpStatus.UNAUTHORIZED);
+      throw new HttpException('Invalid password', HttpStatus.UNAUTHORIZED);
     }
 
     const payload = {

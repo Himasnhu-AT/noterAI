@@ -22,9 +22,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Providers>
-            <Suspense fallback={<div>Loading...</div>}>
-              <ClientLayout>{children}</ClientLayout>
-            </Suspense>
+          <Suspense fallback={<div>Loading...</div>}>
+            <ClientLayout>{children}</ClientLayout>
+          </Suspense>
         </Providers>
       </body>
     </html>

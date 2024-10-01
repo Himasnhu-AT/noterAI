@@ -1,5 +1,5 @@
+import { Block } from "@/types/editor";
 import { useState } from "react";
-import { Block } from "../types";
 
 interface BlockComponentProps {
   block: Block;
