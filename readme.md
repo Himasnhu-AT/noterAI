@@ -1,75 +1,128 @@
 # NoterAI
 
-NoterAI helps students learn better by enabling them to take notes using a Notion-like UI, or their voice. The platform leverages AI to summarize notes, generate quizzes from notes, answer questions based on the notes, and keep students motivated with interesting facts related to their study topics.
+**NoterAI** helps students learn better by enabling them to take notes using a Notion-like UI or their voice. The platform leverages AI to summarize notes, generate quizzes, answer questions based on the notes, and keep students motivated with interesting facts related to their study topics.
+
+## Table of Contents
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Installation Guide](#installation-guide)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
+- [Acknowledgments](#acknowledgments)
+
+## Features
+- **Note-Taking**: Create and organize notes using a Notion-like interface or via voice input.
+- **Summarization**: Use AI to summarize your notes automatically.
+- **Quizzes**: Generate quizzes from your notes to help with revision.
+- **Q&A**: Ask questions and get answers based on your saved notes.
+- **Strange Facts**: Stay motivated with interesting facts relevant to your study topics.
+
+## Tech Stack
+- **Backend**: NestJS, Prisma, Redis
+- **Mobile (Android, Windows, Linux)**: Flutter
+- **iOS/macOS**: Swift
+- **Web**: Next.js
+- **AI**: NestJS (TypeScript) for main logic, Python for AI functionalities
+
+## Installation Guide
+To get NoterAI running locally, follow these steps:
 
 ### Prerequisites
+Ensure you have the following installed:
+- **Node.js** (>= X.X.X)
+- **npm** (>= X.X.X)
+- **pnpm** (>= X.X.X)
+- **Flutter** (>= X.X.X)
+- **Docker** (for Redis and database setup)
 
-- npm (version X.X.X)
-- Flutter (version X.X.X)
-- cargo (version X.X.X)
+### Clone the Repository
+```bash
+git clone https://github.com/himasnhu-at/noterai.git
+cd noterai
+```
 
-### Tech Stack
+### Install Dependencies
+Use `pnpm` to install all required dependencies:
+```bash
+pnpm install
+```
 
-- **Backend**: NestJS, prisma, reddis
-- **android, windows, linux**: Flutter
-- **iOS, macOS**: swift
-- **Web**: Next.js
-- **AI**: Rust (few functions), Python (main AI functions)
+### Set Up the Environment
+Create `.env` files for both the backend and web apps:
+```bash
+cp apps/backend/.env.example apps/backend/.env
+cp apps/web/.env.example apps/web/.env
+```
+Fill out the environment variables such as database URLs, Redis configurations, etc.
 
-### Packages
+### Start Development Environment
+To start the backend and frontend:
+```bash
+pnpm dev
+```
+You can also use Turbo for specific services:
+```bash
+# Backend
+turbo run dev --filter=@noterai/backend
 
-- [**dev-docs**](./apps/dev-docs/index.md): Contains all the documentation related to the project.
-- [**flutter**](./apps/flutter/readme.md): Contains the flutter code for the project.
-- [**server/backend**](./apps/server/backend/readme.md): Contains the backend code for the project.
-- [**server/ai**](./apps/server/ai/readme.md): Contains the AI code for the project.
-- [**swift**](./apps/swift/readme.md): Contains the swift code for the project.
-- [**web**](./apps/web/readme.md): Contains the web code for the project.
+# Web
+turbo run dev --filter=@noterai/web
+```
 
-### Installation
+### Running Flutter
+For mobile or desktop development:
+```bash
+cd apps/flutter
+flutter run
+```
 
-Visit our [Installation Guide](./apps/dev-docs/installation.md) to learn how to install the project on your local machine.
+Ensure that you have a device or emulator running for Flutter.
 
-### Usage
+### Database Setup
+Start the required services with Docker and set up the database:
+```bash
+docker-compose up
+pnpm prisma migrate dev
+```
 
-Visit our [Usage Guide](./apps/dev-docs/usage.md) to learn how to use the project.
+For a more detailed setup guide, refer to our [Installation Guide](./INSTALLATION_GUIDE.md).
 
-### Features
+## Usage
+Once the project is set up, you can access different features through the frontend or mobile app. Follow the [Usage Guide](./docs/usage.md) to learn how to utilize NoterAI's full range of functionalities, including note-taking, quiz generation, and AI-powered summaries.
 
-- **Note-Taking**: Take notes using a Notion-like UI.
-- **Summarization**: Summarize your notes with the help of AI.
-- **Quizzes**: Generate quizzes from your notes to aid in studying.
-- **Q&A**: Get answers to your questions based on your notes.
-- **Strange Facts**: Receive interesting and motivational facts related to your studies.
+## Contributing
+We welcome contributions! Please review our [Contributing Guidelines](./CONTRIBUTING.md) before making any contributions. Make sure to also check out the [Code of Conduct](./CODE_OF_CONDUCT.md).
 
-### Contributing
+### Quick Commands
+Here are some common commands to help you contribute:
 
-Visit our [Contributing Guidelines](./apps/dev-docs/contributing.md) to learn how to contribute to the project.
+- Start the development environment:
 
-### Coding Standards
+```bash
+pnpm dev
+```
 
-We follow industry standards, emphasizing test-driven development and clean, modular code. Please ensure your contributions adhere to these guidelines.
+- Run tests:
 
-### License
+```bash
+pnpm test
+```
 
-This project is licensed under the `Custom License` to prevent commercial use. See the [LICENSE](LICENSE) file for details, in github.
+- Format and lint code:
 
-### Contact
+```bash
+pnpm format && pnpm lint
+```
 
-If you want to contact us, please reach out at [hyattherate2005@gmail.com](mailto:hyattherate2005@gmail.com).
+## License
+This project is licensed under a **Custom License** that restricts commercial use. For more information, see the [LICENSE](./LICENSE) file.
 
-### Support
+## Contact
+If you have any questions or need support, feel free to reach out at **hyattherate2005 [at] gmail.com**.
 
-If you encounter any issues, please create an issue in our GitHub repository.
+## Acknowledgments
+We would like to thank all the contributors who helped in developing NoterAI. Special thanks to the AI community for their resources and support.
 
-### Acknowledgments
-
-- Thanks to all the contributors who helped in developing this project.
-- Special thanks to the AI community for their support and resources.
-
----
-
-Enjoy learning with noterAI and enhance your study experience!
-
----
-
-For more detailed documentation, please refer to our Docs (coming soon).
+Enjoy using NoterAI and enhance your learning experience!
