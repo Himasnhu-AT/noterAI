@@ -46,10 +46,6 @@
   "homepage": "https://github.com/Himasnhu-AT/noterAI#readme",
   "devDependencies": {
     "turbo": "^2.1.2"
-  },
-  "dependencies": {
-    "@blocknote/core": "^0.16.0",
-    "@blocknote/mantine": "^0.16.0",
-    "@blocknote/react": "^0.16.0"
   }
+  
 }
