@@ -19,6 +19,9 @@
     "frontend:dev": "turbo run dev --filter=@noterai/web",
     "frontend:prod": "turbo run prod --filter=@noterai/web",
     "frontend:build": "turbo run build --filter=@noterai/web",
+    "docs:dev": "turbo run dev --filter=@noterai/docs",
+    "docs:prod": "turbo run prod --filter=@noterai/docs",
+    "docs:build": "turbo run build --filter=@noterai/docs",
     "lint": "turbo run lint",
     "format": "turbo run format",
     "test": "jest"
@@ -47,5 +50,4 @@
   "devDependencies": {
     "turbo": "^2.1.2"
   }
-  
 }
