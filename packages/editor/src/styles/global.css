@@ -1,0 +1,15 @@
+/* styles/globals.css */
+.toolbar {
+  background-color: #f3f3f3;
+  padding: 10px;
+}
+
+button {
+  margin-right: 10px;
+}
+
+.editable {
+  border: 1px solid #ddd;
+  padding: 15px;
+  min-height: 150px;
+}
