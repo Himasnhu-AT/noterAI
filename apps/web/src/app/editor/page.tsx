@@ -33,6 +33,14 @@ export default function Home() {
     // };
   }, []);
 
+  const handleEditorChange = (document: any[]) => {
+    // Assuming editor has a method to get the current content as JSON or similar
+    console.log("changed");
+    //
+    // setLocalDocument(document);
+    console.log(JSON.stringify(document));
+  };
+
   return (
     <div className="container mx-auto px-4">
       <Head>
@@ -47,7 +55,11 @@ export default function Home() {
       <main className="py-8">
         <h1 className="text-4xl font-bold mb-8">NotionAI Alternative</h1>
         {document ? (
-          <Editor document={document} />
+          <Editor
+            document={document}
+            editable={true}
+            onChange={handleEditorChange}
+          />
         ) : (
           <div className="text-center">Loading...</div>
         )}

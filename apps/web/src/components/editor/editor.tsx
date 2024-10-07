@@ -7,72 +7,52 @@ import "@blocknote/core/fonts/inter.css"; // Import BlockNote fonts
 import "@blocknote/mantine/style.css"; // Import your custom styles for the editor
 
 interface EditorProps {
-  document: {
-    id: string;
-    title: string;
-    blocks: any[]; // Assume blocks are of any type for now
-  };
+  // document: {
+  //   id: string;
+  //   title: string;
+  //   blocks: any[]; // Assume blocks are of any type for now
+  // };
+  document: any;
+  editable: boolean;
+  onChange: (document: any) => void;
 }
 
-export default function Editor({ document }: EditorProps) {
+export default function Editor({ document, editable, onChange }: EditorProps) {
   const [localDocument, setLocalDocument] = useState(document);
 
-  // Initialize BlockNote editor
   const editor = useCreateBlockNote();
 
   useEffect(() => {
     setLocalDocument(document);
   }, [document]);
 
-  // Handle document updates (commented out existing code)
-  // const handleUpdateDocument = (title: string) => {
-  //   updateDocument(document.id, { title });
-  // };
-
-  // Handle adding blocks (commented out existing code)
-  // const handleAddBlock = (type: string) => {
-  //   const content = type === "text" ? { text: "" } : { url: "" };
-  //   createBlock(document.id, { type, content });
-  // };
-
-  // Handle updating blocks (commented out existing code)
-  // const handleUpdateBlock = (blockId: string, content: any) => {
-  //   updateBlock(document.id, blockId, { content });
-  // };
-
-  // Handle deleting blocks (commented out existing code)
-  // const handleDeleteBlock = (blockId: string) => {
-  //   deleteBlock(document.id, blockId);
+  // const handleEditorChange = (document: any[]) => {
+  //   // Assuming editor has a method to get the current content as JSON or similar
+  //   setLocalDocument(document);
+  //   console.log(JSON.stringify(document));
   // };
 
   return (
     <div className="editor">
-      <input
-        type="text"
-        value={localDocument.title}
-        // onChange={(e) => handleUpdateDocument(e.target.value)} // Commented out
-        className="text-3xl font-bold mb-4 w-full"
-        placeholder="Document Title"
-      />
-      {/* Render BlockNote editor */}
-      <BlockNoteView
+      {/* <BlockNoteView
         editor={editor} // Attach the BlockNote editor
+        onChange={handleEditorChange}
         data-theming-css-variables-demo
         theme="light"
+      /> */}
+      <BlockNoteView
+        editable={true}
+        editor={editor}
+        // theme={resolvedTheme === "dark" ? "dark" : "light"}
+        theme={"light"}
         className="flex-grow bn-container overflow-auto p-0 pt-4 pb-4"
+        onChange={() => {
+          // setBlocks(editor.document);
+          // onChange(JSON.stringify(blocks));
+          onChange(editor.document);
+        }}
       />
-      <div className="blocks space-y-4">
-        {/* Commented out existing block rendering */}
-        {/* {localDocument.blocks.map((block) => (
-          <BlockComponent
-            key={block.id}
-            block={block}
-            onUpdate={handleUpdateBlock}
-            onDelete={handleDeleteBlock}
-            onAddBlock={handleAddBlock}
-          />
-        ))} */}
-      </div>
+      <div className="blocks space-y-4"></div>
     </div>
   );
 }

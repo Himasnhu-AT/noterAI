@@ -1,0 +1,25 @@
+[
+  {
+    "id": "5687de2e-b2f8-4a43-bb4e-16d15d59e059",
+    "type": "heading",
+    "props": {
+      "textColor": "default",
+      "backgroundColor": "default",
+      "textAlignment": "left",
+      "level": 1
+    },
+    "content": [{ "type": "text", "text": "Hello", "styles": {} }],
+    "children": []
+  },
+  {
+    "id": "e6e20e32-fb9f-4038-954e-8a4f713070c4",
+    "type": "paragraph",
+    "props": {
+      "textColor": "default",
+      "backgroundColor": "default",
+      "textAlignment": "left"
+    },
+    "content": [],
+    "children": []
+  }
+]
