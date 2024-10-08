@@ -48,6 +48,6 @@
   },
   "homepage": "https://github.com/Himasnhu-AT/noterAI#readme",
   "devDependencies": {
-    "turbo": "^2.1.2"
+    "turbo": "^2.1.3"
   }
 }
