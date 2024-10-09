@@ -1,9 +1,10 @@
 "use client";
+
 import React from "react";
 import { CardStack } from "./ui/card-stack";
 import { cn } from "@/lib/utils";
-import { motion } from "framer-motion";
-import { AuroraBackground } from "./ui/aurora-background";
+// import { motion } from "framer-motion";
+// import { AuroraBackground } from "./ui/aurora-background";
 
 function Reviews() {
   return (
@@ -11,7 +12,7 @@ function Reviews() {
       <div className="h-[50rem] w-full dark:bg-black bg-white  dark:bg-grid-small-white/[0.2] bg-grid-small-black/[0.2] relative flex items-center justify-center">
         <div className="mt-14 flex flex-col justify-center">
           <h1 className="text-2xl md:text-4xl lg:text-5xl font-semibold text-center">
-            What people are saying
+            What our users are saying
           </h1>
           <div className="flex flex-col justify-center items-center mt-20">
             <CardStack items={CARDS} />
@@ -44,39 +45,37 @@ export const Highlight = ({
 const CARDS = [
   {
     id: 0,
-    name: "Manu Arora",
-    designation: "Senior Software Engineer",
+    name: "Jane Doe",
+    designation: "Software Engineer",
     content: (
       <p>
-        These cards are amazing, <Highlight>I want to use them</Highlight> in my
-        project. Framer motion is a godsend ngl tbh fam 🙏
+        The features offered here are incredibly helpful, and{" "}
+        <Highlight>I’m amazed at how seamless the integration is</Highlight>. I
+        use them every day to improve my productivity.
       </p>
     ),
   },
   {
     id: 1,
-    name: "Elon Musk",
-    designation: "Senior Shitposter",
+    name: "John Smith",
+    designation: "Project Manager",
     content: (
       <p>
-        I dont like this Twitter thing,{" "}
-        <Highlight>deleting it right away</Highlight> because yolo. Instead, I
-        would like to call it <Highlight>X.com</Highlight> so that it can easily
-        be confused with adult sites.
+        This platform has streamlined our workflows significantly.{" "}
+        <Highlight>The ease of use is unmatched</Highlight>, and it's been a
+        game changer for our team.
       </p>
     ),
   },
   {
     id: 2,
-    name: "Tyler Durden",
-    designation: "Manager Project Mayhem",
+    name: "Alice Johnson",
+    designation: "Data Scientist",
     content: (
       <p>
-        The first rule of
-        <Highlight>Fight Club</Highlight> is that you do not talk about fight
-        club. The second rule of
-        <Highlight>Fight club</Highlight> is that you DO NOT TALK about fight
-        club.
+        I’ve never encountered such a comprehensive set of tools that are also
+        <Highlight>so intuitive and user-friendly</Highlight>. It has made my
+        job much easier and more efficient.
       </p>
     ),
   },
