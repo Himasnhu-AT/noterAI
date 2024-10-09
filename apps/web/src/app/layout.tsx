@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { Suspense } from "react";
-import Navigationbar from "@/components/Navigationbar";
+// import Navigationbar from "@/components/Navigationbar";
 import { Providers } from "./providers";
 import ClientLayout from "@/components/ClientLayout"; // Import the new client component
+import { Analytics } from "@vercel/analytics/react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -37,6 +38,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+        <Analytics />
         <Providers>
           <Suspense fallback={<div>Loading...</div>}>
             <ClientLayout>{children}</ClientLayout>
