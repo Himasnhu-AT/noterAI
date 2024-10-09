@@ -62,8 +62,8 @@ const CARDS = [
     content: (
       <p>
         This platform has streamlined our workflows significantly.{" "}
-        <Highlight>The ease of use is unmatched</Highlight>, and it's been a
-        game changer for our team.
+        <Highlight>The ease of use is unmatched</Highlight>, and it&apos;s been
+        a game changer for our team.
       </p>
     ),
   },
