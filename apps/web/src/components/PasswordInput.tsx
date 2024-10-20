@@ -2,14 +2,33 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
 import { useMotionTemplate, useMotionValue, motion } from "framer-motion";
+import { IconEyeOff, IconEye } from "@tabler/icons-react";
+import { useState } from "react";
 
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {}
 
-const Input = React.forwardRef<HTMLInputElement, InputProps>(
+const PasswordInput = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, type, ...props }, ref) => {
     const radius = 100; // change this to increase the rdaius of the hover effect
     const [visible, setVisible] = React.useState(false);
+    const [isVisible, setIsVisible] = React.useState(false);
+    const [visIcon, setVisIcon] = useState(<IconEyeOff />);
+    const [passtype, setPasstype] = React.useState("password");
+    const toggleVisibility = () => {
+      setIsVisible(!isVisible);
+      isVisible ? visibilityOn() : visibilityOff();
+    };
+
+    function visibilityOn() {
+      setPasstype("text");
+      setVisIcon(<IconEye />);
+    }
+
+    function visibilityOff() {
+      setPasstype("password");
+      setVisIcon(<IconEyeOff />);
+    }
 
     let mouseX = useMotionValue(0);
     let mouseY = useMotionValue(0);
@@ -34,10 +53,10 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         onMouseMove={handleMouseMove}
         onMouseEnter={() => setVisible(true)}
         onMouseLeave={() => setVisible(false)}
-        className="p-[2px] rounded-lg transition duration-300 group/input"
+        className="p-[2px] rounded-lg transition duration-300 group/input flex flex-row"
       >
         <input
-          type={type}
+          type={passtype}
           className={cn(
             `flex h-10 w-full border-none bg-gray-50 dark:bg-zinc-800 text-black dark:text-white shadow-input rounded-md px-3 py-2 text-sm  file:border-0 file:bg-transparent 
           file:text-sm file:font-medium placeholder:text-neutral-400 dark:placeholder-text-neutral-600 
@@ -51,10 +70,13 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           ref={ref}
           {...props}
         />
+        <button onClick={toggleVisibility} className="p-1">
+          {visIcon}
+        </button>
       </motion.div>
     );
   }
 );
-Input.displayName = "Input";
+PasswordInput.displayName = "Input";
 
-export { Input };
+export { PasswordInput };

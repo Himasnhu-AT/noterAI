@@ -2,12 +2,8 @@
 import React, { useState } from "react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
+import { PasswordInput } from "@/components/PasswordInput";
 import { cn } from "@/lib/utils";
-import {
-  IconBrandGithub,
-  IconBrandGoogle,
-  IconBrandTwitter,
-} from "@tabler/icons-react";
 import { useRouter } from "next/navigation";
 
 export function SignupForm() {
@@ -59,83 +55,84 @@ export function SignupForm() {
     }
   };
   return (
-    <div className="max-w-md w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-white dark:bg-black">
-      <h2 className="font-bold text-xl text-neutral-800 dark:text-neutral-200">
-        Welcome to NoterAi
-      </h2>
-      <p className="text-neutral-600 text-sm max-w-sm mt-2 dark:text-neutral-300">
-        Register to NoterAi for better services
-      </p>
+    <div className="max md:w-[986px]">
+      <div className="max-w-md w-full mx-auto rounded-2xl p-6 md:p-8 shadow-input bg-white dark:bg-black">
+        <h2 className="font-bold text-xl text-neutral-800 dark:text-neutral-200">
+          Welcome to NoterAi
+        </h2>
+        <p className="text-neutral-600 text-sm max-w-sm mt-2 dark:text-neutral-300">
+          Register to NoterAi for better services
+        </p>
 
-      <form className="my-8" onSubmit={handleSubmit}>
-        <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-4">
-          <LabelInputContainer>
-            <Label htmlFor="firstname">First name</Label>
+        <form className="my-8" onSubmit={handleSubmit}>
+          <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-4">
+            <LabelInputContainer>
+              <Label htmlFor="firstname">First name</Label>
+              <Input
+                id="firstname"
+                name="firstName"
+                placeholder="noter"
+                type="text"
+                value={formData.firstName}
+                onChange={handleChange}
+              />
+            </LabelInputContainer>
+            <LabelInputContainer>
+              <Label htmlFor="lastname">Last name</Label>
+              <Input
+                id="lastname"
+                name="lastName"
+                placeholder="Ai"
+                type="text"
+                value={formData.lastName}
+                onChange={handleChange}
+              />
+            </LabelInputContainer>
+          </div>
+          <LabelInputContainer className="mb-4">
+            <Label htmlFor="email">Email Address</Label>
             <Input
-              id="firstname"
-              name="firstName"
-              placeholder="noter"
-              type="text"
-              value={formData.firstName}
+              id="email"
+              name="email"
+              placeholder="noterAi@xyz.com"
+              type="email"
+              value={formData.email}
               onChange={handleChange}
             />
           </LabelInputContainer>
-          <LabelInputContainer>
-            <Label htmlFor="lastname">Last name</Label>
+          <LabelInputContainer className="mb-4">
+            <Label htmlFor="username">Username</Label>
             <Input
-              id="lastname"
-              name="lastName"
-              placeholder="Ai"
+              id="username"
+              name="userName"
+              placeholder="Username"
               type="text"
-              value={formData.lastName}
+              value={formData.userName}
               onChange={handleChange}
             />
           </LabelInputContainer>
-        </div>
-        <LabelInputContainer className="mb-4">
-          <Label htmlFor="email">Email Address</Label>
-          <Input
-            id="email"
-            name="email"
-            placeholder="noterAi@xyz.com"
-            type="email"
-            value={formData.email}
-            onChange={handleChange}
-          />
-        </LabelInputContainer>
-        <LabelInputContainer className="mb-4">
-          <Label htmlFor="username">Username</Label>
-          <Input
-            id="username"
-            name="userName"
-            placeholder="Username"
-            type="text"
-            value={formData.userName}
-            onChange={handleChange}
-          />
-        </LabelInputContainer>
-        <LabelInputContainer className="mb-4">
-          <Label htmlFor="password">Password</Label>
-          <Input
-            id="password"
-            name="password"
-            placeholder="••••••••"
-            type="password"
-            value={formData.password}
-            onChange={handleChange}
-          />
-        </LabelInputContainer>
+          <LabelInputContainer className="mb-4">
+            <Label htmlFor="password">Password</Label>
+            <PasswordInput
+              id="password"
+              name="password"
+              placeholder="••••••••"
+              value={formData.password}
+              onChange={handleChange}
+            />
+          </LabelInputContainer>
 
-        <button
-          className="bg-gradient-to-br relative group/btn from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"
-          type="submit"
-        >
-          Sign up &rarr;
-          <BottomGradient />
-        </button>
+          <button
+            className="bg-gradient-to-br relative group/btn from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"
+            type="submit"
+          >
+            Sign up &rarr;
+            <BottomGradient />
+          </button>
 
-        <div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent my-8 h-[1px] w-full" />
-      </form>
+          <div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent my-8 h-[1px] w-full" />
+        </form>
+      </div>
     </div>
   );
 }

@@ -3,7 +3,7 @@ import React from "react";
 
 function loginpage() {
   return (
-    <div className="mt-7">
+    <div className="h-screen flex justify-center items-center w-full">
       <LoginForm />
     </div>
   );
