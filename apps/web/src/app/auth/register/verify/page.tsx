@@ -2,10 +2,10 @@
 
 import React, { useState } from "react";
 import { useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
-import { useRouter } from "next/navigation";
 
 function Verify() {
   const [token, setToken] = useState("");
@@ -43,12 +43,33 @@ function Verify() {
     }
   };
 
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (!email || !emailRegex.test(email)) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <div className="max-w-md w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-white dark:bg-black">
+          <h2 className="font-bold text-xl text-neutral-800 dark:text-neutral-200">
+            Email not found
+          </h2>
+          <p className="text-neutral-600 dark:text-neutral-400 text-sm mt-2">
+            The email address you are trying to verify is not valid.
+          </p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="flex justify-center items-center h-screen">
       <div className="max-w-md w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-white dark:bg-black">
         <h2 className="font-bold text-xl text-neutral-800 dark:text-neutral-200">
           Verify your email
         </h2>
+        <p className="text-neutral-600 dark:text-neutral-400 text-sm mt-2">
+          We have sent a verification code to your email address {` ${email}`}.
+          Please enter the code below.
+        </p>
         <form className="my-8" onSubmit={handleSubmit}>
           <LabelInputContainer className="mb-4">
             <Label htmlFor="token">Verification code</Label>

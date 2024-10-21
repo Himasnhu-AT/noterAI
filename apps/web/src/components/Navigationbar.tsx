@@ -76,7 +76,7 @@ function Navigationbar() {
             </Link>
           </NavbarItem>
           <NavbarItem>
-            <Link href="/auth/signup">
+            <Link href="/auth/register">
               <Button variant="default">Sign Up</Button>
             </Link>
           </NavbarItem>
