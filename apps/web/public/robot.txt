@@ -1,0 +1,11 @@
+User-agent: *
+Disallow: /api/
+Disallow: /private/
+Disallow: /dashboard/
+Disallow: /admin/
+Allow: /
+
+User-agent: bytespyder
+Disallow: /
+
+Sitemap: https://yourdomain.com/sitemap.xml

@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Navbar,
   NavbarBrand,
@@ -10,87 +10,87 @@ import {
   NavbarMenu,
   NavbarMenuItem,
 } from "@nextui-org/navbar";
-import { Button } from "@nextui-org/button";
 import Link from "next/link";
+import { Button } from "./ui/button";
 
 function Navigationbar() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [currentPath, setCurrentPath] = useState("");
 
-  const menuItems = ["Homepage", "About Us", "Contact Us"];
+  const menuItems = [
+    { name: "Homepage", href: "/" },
+    { name: "About Us", href: "/about" },
+    { name: "Contact Us", href: "/contact" },
+  ];
+
+  // Ensure the pathname is set on the client side
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setCurrentPath(window.location.pathname);
+    }
+  }, []);
 
   return (
-    <div className="">
-      <Navbar onMenuOpenChange={setIsMenuOpen} isBordered>
+    <div>
+      <Navbar
+        onMenuOpenChange={setIsMenuOpen}
+        isBordered
+        className=" dark:bg-black text-gray-800 dark:text-white px-4 py-2 sm:py-4"
+      >
+        {/* Left Section: Brand & Menu Toggle */}
         <NavbarContent justify="start">
+          <NavbarBrand className=" font-bold">
+            <Link href="/" className="text-2xl">
+              NoterAi
+            </Link>
+          </NavbarBrand>
           <NavbarMenuToggle
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-            className="sm:hidden"
+            className="sm:hidden ml-auto"
           />
-          <NavbarBrand>
-            <p className="font-bold text-inherit">NoterAi</p>
-          </NavbarBrand>
         </NavbarContent>
 
-        <NavbarContent className="hidden sm:flex gap-4" justify="center">
-          <NavbarItem>
-            <Link color="foreground" href="/">
-              Homepage
-            </Link>
-          </NavbarItem>
-
-          <NavbarItem>
-            <Link href="/about" aria-current="page">
-              About Us
-            </Link>
-          </NavbarItem>
-
-          <NavbarItem>
-            <Link color="foreground" href="/contact">
-              Contact Us
-            </Link>
-          </NavbarItem>
+        {/* Center Section: Links (Hidden on small screens) */}
+        <NavbarContent className="hidden sm:flex gap-6" justify="center">
+          {menuItems.map((item, index) => (
+            <NavbarItem key={index} isActive={item.href === currentPath}>
+              <Link
+                href={item.href}
+                className={`${
+                  item.href === currentPath
+                    ? "text-blue-600"
+                    : "text-gray-800 dark:text-gray-300"
+                } hover:text-blue-600 transition-all`}
+              >
+                {item.name}
+              </Link>
+            </NavbarItem>
+          ))}
         </NavbarContent>
 
+        {/* Right Section: Login & Sign Up */}
         <NavbarContent justify="end">
-          <NavbarItem className="">
-            <Button
-              as={Link}
-              color="primary"
-              href="/auth/login"
-              variant="flat"
-              className="bg-transparent text-1.5xl text-"
-            >
-              Login
-            </Button>
+          <NavbarItem>
+            <Link href="/auth/login">
+              <Button variant="secondary">Login</Button>
+            </Link>
           </NavbarItem>
           <NavbarItem>
-            <Button
-              as={Link}
-              color="primary"
-              href="/auth/register"
-              variant="flat"
-              className="bg-blue-100 text-blue-600"
-            >
-              Sign Up
-            </Button>
+            <Link href="/auth/signup">
+              <Button variant="default">Sign Up</Button>
+            </Link>
           </NavbarItem>
         </NavbarContent>
 
+        {/* Mobile Menu */}
         <NavbarMenu>
           {menuItems.map((item, index) => (
-            <NavbarMenuItem key={`${item}-${index}`}>
+            <NavbarMenuItem key={`${item.name}-${index}`}>
               <Link
-                color={
-                  index === 2
-                    ? "primary"
-                    : index === menuItems.length - 1
-                      ? "danger"
-                      : "foreground"
-                }
-                className="w-full"
-                href="#"
+                href={item.href}
+                className="w-full text-gray-800 dark:text-gray-300 hover:text-blue-600 transition-all"
               >
-                {item}
+                {item.name}
               </Link>
             </NavbarMenuItem>
           ))}
