@@ -140,7 +140,7 @@ export default function LoginForm() {
                     <FormControl>
                       <Input
                         type="email"
-                        placeholder="noterAi@xyz.com"
+                        placeholder="noterAI@noterAI.com"
                         {...field}
                       />
                     </FormControl>
@@ -157,7 +157,7 @@ export default function LoginForm() {
                     <FormControl>
                       <Input
                         type="password"
-                        placeholder="••••••••"
+                        placeholder="********"
                         {...field}
                       />
                     </FormControl>
@@ -189,14 +189,17 @@ export default function LoginForm() {
               Don&apos;t have an account.
               <Button variant={"link"} className="text-[16px]">
                 {" "}
-                <Link href={"/signup"}>Register</Link>
+                <Link href={"/auth/register"}>Register</Link>
               </Button>
             </p>
           </div>
           <div>
             <p>
               <Button variant={"link"} className="text-[16px]">
-                <Link href={"/forgotpassword"}> Forgot Your Password?</Link>
+                <Link href={"/auth/password/forgot"}>
+                  {" "}
+                  Forgot Your Password?
+                </Link>
               </Button>
             </p>
           </div>

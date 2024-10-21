@@ -141,7 +141,7 @@ export default function ForgotForm() {
           <div>
             <p>
               <Button variant={"link"} className="text-[16px]">
-                <Link href={"/login"}>Back to Login</Link>
+                <Link href={"/auth/login"}>Back to Login</Link>
               </Button>
             </p>
           </div>

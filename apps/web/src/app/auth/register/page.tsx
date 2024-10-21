@@ -175,11 +175,11 @@ const SignUp = () => {
                 name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Email</FormLabel>
+                    <FormLabel>Email Address</FormLabel>
                     <FormControl>
                       <Input
                         type="email"
-                        placeholder="OpenEdu@Example.com"
+                        placeholder="noterAI@noterAI.com"
                         {...field}
                       />
                     </FormControl>
@@ -228,14 +228,17 @@ const SignUp = () => {
               Don&apos;t have an account.
               <Button variant={"link"} className=" text-[16px]">
                 {" "}
-                <Link href={"/signup"}>Register</Link>
+                <Link href={"/auth/login"}>Login</Link>
               </Button>
             </p>
           </div>
           <div>
             <p>
               <Button variant={"link"} className=" text-[16px]">
-                <Link href={"/forgotpassword"}> Forgot Your Password?</Link>
+                <Link href={"/auth/password/forgot"}>
+                  {" "}
+                  Forgot Your Password?
+                </Link>
               </Button>
             </p>
           </div>
