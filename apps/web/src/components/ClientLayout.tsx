@@ -11,7 +11,7 @@ export default function ClientLayout({
 }) {
   const pathname = usePathname();
 
-  const Layout = pathname?.startsWith("/dashboard")
+  const Layout = pathname?.startsWith("/user/dashboard")
     ? DashboardLayout
     : PublicLayout;
 
